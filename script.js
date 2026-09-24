@@ -824,8 +824,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------------
-     15. BESPOKE HAMPER CREATION STUDIO (on custom-hampers.html)
+     15. GLOBAL BUILDER NAVIGATION HELPER & BESPOKE HAMPER STUDIO
      ------------------------------------------------------------------------ */
+  window.sendToBuilder = function(name, price, img, category) {
+    const itemData = { name, price: parseInt(price, 10), img, category };
+    localStorage.setItem('ds_builder_preset', JSON.stringify(itemData));
+    window.location.href = 'custom-hampers.html#hamperBuilderContainer';
+  };
+
   const hamperBuilderForm = document.getElementById('hamperBuilderContainer');
   if (hamperBuilderForm) {
     initBespokeHamperStudio();
@@ -833,22 +839,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initBespokeHamperStudio() {
     let selectedBase = { id: 'wooden', name: 'Handcrafted Wooden Basket', price: 599, img: 'assets/base-wooden.jpg' };
+    
+    let customPresetItem = null;
+    const storedPreset = localStorage.getItem('ds_builder_preset');
+    if (storedPreset) {
+      try {
+        customPresetItem = JSON.parse(storedPreset);
+        localStorage.removeItem('ds_builder_preset');
+      } catch (e) {
+        console.error('Error parsing preset item', e);
+      }
+    }
+
     let selectedProducts = {
       'lipstick': 0,
       'serum': 0,
       'eyeshadow': 0,
+      'perfume': 0,
       'truffles': 0,
       'cookies': 0,
-      'candle': 0
+      'dryfruits': 0,
+      'tea': 0,
+      'candle': 0,
+      'bathsalts': 0,
+      'teddy': 0,
+      'diya': 0
     };
 
     const productsCatalog = {
-      'lipstick': { name: 'Matte Velvet Lipstick', category: 'Makeup & Cosmetics', price: 699, img: 'assets/makeup-set.jpg' },
+      'lipstick': { name: 'Matte Velvet Lipstick', category: 'Beauty', price: 699, img: 'assets/makeup-set.jpg' },
       'serum': { name: 'Rosewater Glow Serum', category: 'Skincare', price: 899, img: 'assets/makeup-set.jpg' },
-      'eyeshadow': { name: 'Celestial Eye Palette', category: 'Makeup & Cosmetics', price: 1199, img: 'assets/makeup-set.jpg' },
+      'eyeshadow': { name: 'Celestial Eye Palette', category: 'Beauty', price: 1199, img: 'assets/makeup-set.jpg' },
+      'perfume': { name: 'French Lavender Mist', category: 'Self-Care', price: 799, img: 'assets/gallery-4.jpeg' },
       'truffles': { name: 'Artisanal Chocolate Truffles', category: 'Gourmet Treats', price: 499, img: 'assets/gallery-6.jpeg' },
       'cookies': { name: 'Gourmet Butter Cookies', category: 'Gourmet Treats', price: 399, img: 'assets/gallery-10.jpeg' },
-      'candle': { name: 'Scented Botanical Candle', category: 'Self-Care', price: 599, img: 'assets/gallery-4.jpeg' }
+      'dryfruits': { name: 'Royal Almond & Cashew Mix', category: 'Gourmet Treats', price: 599, img: 'assets/wa-product-1.jpg' },
+      'tea': { name: 'Exotic Herbal Blossom Tea', category: 'Gourmet Treats', price: 349, img: 'assets/gallery-5.jpeg' },
+      'candle': { name: 'Scented Botanical Candle', category: 'Self-Care', price: 599, img: 'assets/gallery-4.jpeg' },
+      'bathsalts': { name: 'Lavender Spa Bath Salts', category: 'Self-Care', price: 449, img: 'assets/wa-product-8.jpg' },
+      'teddy': { name: 'Plush Keepsake Teddy', category: 'Keepsakes', price: 399, img: 'assets/wa-product-11.jpg' },
+      'diya': { name: 'Brass Artisanal Festive Diya', category: 'Festive Keepsake', price: 299, img: 'assets/wa-product-6.jpg' }
     };
 
     let selectedAddons = {
@@ -892,7 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
       productsGrid.innerHTML = Object.keys(productsCatalog).map(key => {
         const item = productsCatalog[key];
         return `
-          <div class="product-picker-card pointer-zoom-card">
+          <div id="product_picker_card_${key}" class="product-picker-card pointer-zoom-card">
             <button class="zoom-badge-btn" onclick="openZoomModal('${item.img}', '${item.name}', 'Category: ${item.category}')" title="Zoom Preview">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
             </button>
@@ -904,7 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="picker-qty-controls">
               <button class="qty-btn" onclick="changeHamperItemQty('${key}', -1)">-</button>
-              <span id="hamper_item_qty_${key}" style="font-weight:700;">0</span>
+              <span id="hamper_item_qty_${key}" style="font-weight:700; font-size:0.95rem; color:var(--color-dark-olive);">0</span>
               <button class="qty-btn" onclick="changeHamperItemQty('${key}', 1)">+</button>
             </div>
           </div>
@@ -923,9 +953,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.changeHamperItemQty = function(key, delta) {
       selectedProducts[key] = Math.max(0, (selectedProducts[key] || 0) + delta);
-      const qtyEl = document.getElementById(`hamper_item_qty_${key}`);
-      if (qtyEl) qtyEl.textContent = selectedProducts[key];
       updateHamperBuilderUI();
+    };
+
+    window.removePresetItem = function() {
+      customPresetItem = null;
+      updateHamperBuilderUI();
+      showToast('Removed collection item from builder');
     };
 
     window.toggleAddon = function(key) {
@@ -944,8 +978,45 @@ document.addEventListener('DOMContentLoaded', () => {
       if (previewBaseTag) previewBaseTag.textContent = '🪵 ' + selectedBase.name;
       if (previewVisualImg) previewVisualImg.src = selectedBase.img;
 
+      // Update grid product picker cards visual active state & quantities
+      Object.keys(productsCatalog).forEach(k => {
+        const qty = selectedProducts[k] || 0;
+        const cardEl = document.getElementById(`product_picker_card_${k}`);
+        const qtyEl = document.getElementById(`hamper_item_qty_${k}`);
+        if (qtyEl) qtyEl.textContent = qty;
+        if (cardEl) {
+          if (qty > 0) {
+            cardEl.style.border = '2px solid var(--color-champagne)';
+            cardEl.style.backgroundColor = '#ffffff';
+            cardEl.style.boxShadow = 'var(--shadow-gold)';
+          } else {
+            cardEl.style.border = '1px solid var(--color-border)';
+            cardEl.style.backgroundColor = 'var(--color-soft-cream)';
+            cardEl.style.boxShadow = 'none';
+          }
+        }
+      });
+
       let total = selectedBase.price;
-      let itemsHTML = `<li><span>🪵 ${selectedBase.name}</span> <span>${formatMoney(selectedBase.price)}</span></li>`;
+      let itemsHTML = `<li style="display:flex; justify-content:space-between; align-items:center; padding-bottom:6px; border-bottom:1px solid var(--color-border);">
+        <span>🪵 ${selectedBase.name}</span>
+        <span style="font-weight:700;">${formatMoney(selectedBase.price)}</span>
+      </li>`;
+
+      if (customPresetItem) {
+        const presetTotal = customPresetItem.price;
+        total += presetTotal;
+        itemsHTML += `<li style="background:var(--color-soft-cream); padding:8px 10px; border-radius:var(--radius-sm); border:1px solid var(--color-champagne); margin:6px 0; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="font-size:0.68rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700; display:block;">Collection Preset</span>
+            <span style="font-weight:700; color:var(--color-dark-olive);">🎁 ${customPresetItem.name}</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-weight:700; color:var(--color-champagne);">${formatMoney(presetTotal)}</span>
+            <button onclick="removePresetItem()" style="background:none; border:none; color:#c1121f; cursor:pointer; font-weight:700;" title="Remove Preset">&times;</button>
+          </div>
+        </li>`;
+      }
 
       Object.keys(selectedProducts).forEach(k => {
         const qty = selectedProducts[k];
@@ -953,7 +1024,20 @@ document.addEventListener('DOMContentLoaded', () => {
           const item = productsCatalog[k];
           const itemCost = item.price * qty;
           total += itemCost;
-          itemsHTML += `<li><span>✨ ${item.name} (x${qty})</span> <span>${formatMoney(itemCost)}</span></li>`;
+          itemsHTML += `<li style="display:flex; align-items:center; justify-content:space-between; gap:6px; padding:6px 0; border-bottom:1px dashed var(--color-border);">
+            <div>
+              <div style="font-weight:600; color:var(--color-dark-olive); font-size:0.88rem;">✨ ${item.name}</div>
+              <div style="font-size:0.75rem; color:var(--color-champagne); font-weight:700;">${formatMoney(item.price)} each</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <div class="picker-qty-controls" style="padding:2px 6px; margin:0;">
+                <button class="qty-btn" onclick="changeHamperItemQty('${k}', -1)" style="width:22px; height:22px; font-size:0.8rem;">-</button>
+                <span style="font-weight:700; font-size:0.85rem; padding:0 4px; min-width:14px; text-align:center;">${qty}</span>
+                <button class="qty-btn" onclick="changeHamperItemQty('${k}', 1)" style="width:22px; height:22px; font-size:0.8rem;">+</button>
+              </div>
+              <span style="font-weight:700; font-size:0.88rem; color:var(--color-dark-olive); min-width:60px; text-align:right;">${formatMoney(itemCost)}</span>
+            </div>
+          </li>`;
         }
       });
 
@@ -961,7 +1045,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedAddons[k]) {
           const addon = addonsCatalog[k];
           total += addon.price;
-          itemsHTML += `<li><span>🌸 ${addon.name}</span> <span>${formatMoney(addon.price)}</span></li>`;
+          itemsHTML += `<li style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; color:var(--color-primary-olive);">
+            <span>🌸 ${addon.name}</span>
+            <span style="font-weight:700;">${formatMoney(addon.price)}</span>
+          </li>`;
         }
       });
 
@@ -972,12 +1059,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render call
     updateHamperBuilderUI();
 
+    // If loaded preset from collection, show toast & scroll to builder
+    if (customPresetItem) {
+      setTimeout(() => {
+        showToast(`✨ Loaded "${customPresetItem.name}" into Custom Hamper Builder!`);
+        const builderSection = document.getElementById('hamperBuilderContainer');
+        if (builderSection) {
+          builderSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 400);
+    }
+
     // Add Custom Hamper to Cart
     const addCustomHamperBtn = document.getElementById('addCustomHamperBtn');
     if (addCustomHamperBtn) {
       addCustomHamperBtn.addEventListener('click', () => {
         let total = selectedBase.price;
         let itemNames = [selectedBase.name];
+
+        if (customPresetItem) {
+          total += customPresetItem.price;
+          itemNames.push(customPresetItem.name);
+        }
 
         Object.keys(selectedProducts).forEach(k => {
           if (selectedProducts[k] > 0) {
@@ -993,8 +1096,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        const customNote = document.getElementById('hamperCardMessage')?.value || 'Custom Curated Hamper';
-        const hamperTitle = `Custom Bespoke Hamper (${selectedBase.name.split(' ')[0]})`;
+        const customNote = document.getElementById('hamperCardMessage')?.value || 'Bespoke Curated Hamper';
+        const hamperTitle = customPresetItem 
+          ? `Bespoke Custom Hamper (${customPresetItem.name})`
+          : `Custom Bespoke Hamper (${selectedBase.name.split(' ')[0]})`;
 
         window.addItemToCart(hamperTitle, total, selectedBase.img, customNote);
       });
