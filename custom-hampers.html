@@ -115,47 +115,121 @@
       </div>
     </section>
 
-    <!-- FORM -->
-    <section class="section" style="background-color:var(--color-soft-cream);">
-      <div class="container" style="maxWidth:750px;">
-        <div class="section-header text-center">
+    <!-- INTERACTIVE BESPOKE HAMPER BUILDER STUDIO -->
+    <section class="section" id="hamperBuilderContainer" style="background-color:var(--color-soft-cream);">
+      <div class="container">
+        <div class="section-header text-center" style="margin-bottom:40px;">
           <div class="section-eyebrow justify-center">
-            <i class="fa-solid fa-gift"></i> START MY CUSTOM HAMPER
+            <i class="fa-solid fa-gift"></i> INTERACTIVE HAMPER STUDIO
           </div>
-          <h2 class="section-title">Bespoke Hamper <span class="font-script gold-gradient-text">Form</span></h2>
+          <h2 class="section-title">Build Your <span class="font-script gold-gradient-text">Custom Hamper</span></h2>
+          <p class="section-subtitle" style="margin:0 auto;">Select your preferred packaging base, add luxury makeup, treats & florals, and watch your hamper come alive in real-time preview!</p>
         </div>
 
-        <form id="customForm" style="background-color:var(--color-warm-ivory); padding:40px; borderRadius:var(--radius-lg); border:1px solid var(--color-champagne); boxShadow:var(--shadow-md);">
-          <div style="marginBottom:16px;">
-            <label style="display:block; fontSize:0.82rem; fontWeight:700; color:var(--color-dark-olive); marginBottom:6px;">Your Name *</label>
-            <input required type="text" id="cName" placeholder="e.g. Radhika Sharma" style="width:100%; padding:12px; borderRadius:var(--radius-sm); border:1px solid var(--color-border); outline:none;">
-          </div>
-          <div style="marginBottom:16px;">
-            <label style="display:block; fontSize:0.82rem; fontWeight:700; color:var(--color-dark-olive); marginBottom:6px;">Phone / WhatsApp *</label>
-            <input required type="tel" id="cPhone" placeholder="+91 9876543210" style="width:100%; padding:12px; borderRadius:var(--radius-sm); border:1px solid var(--color-border); outline:none;">
-          </div>
-          <div style="marginBottom:16px;">
-            <label style="display:block; fontSize:0.82rem; fontWeight:700; color:var(--color-dark-olive); marginBottom:6px;">Occasion</label>
-            <select id="cOccasion" style="width:100%; padding:12px; borderRadius:var(--radius-sm); border:1px solid var(--color-border); outline:none;">
-              <option value="Birthday">Birthday</option>
-              <option value="Anniversary">Anniversary</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Baby Shower">Baby Shower</option>
-              <option value="Raksha Bandhan">Raksha Bandhan</option>
-              <option value="Festivals">Festivals</option>
-              <option value="Corporate">Corporate</option>
-              <option value="Just Because">Just Because</option>
-            </select>
-          </div>
-          <div style="marginBottom:20px;">
-            <label style="display:block; fontSize:0.82rem; fontWeight:700; color:var(--color-dark-olive); marginBottom:6px;">Gift Preferences & Details</label>
-            <textarea id="cMessage" rows="4" placeholder="Tell us about the person, preferred colors or items..." style="width:100%; padding:12px; borderRadius:var(--radius-sm); border:1px solid var(--color-border); outline:none;"></textarea>
+        <div class="hamper-builder-grid">
+          <!-- BUILDER STEPS LEFT COLUMN -->
+          <div>
+            <!-- STEP 1: CHOOSE BASE PACKAGING -->
+            <div class="builder-step-section">
+              <div class="builder-step-header">
+                <div class="step-num">1</div>
+                <div>
+                  <h3 class="step-title">Choose Packaging Base</h3>
+                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Click pointer lens icon to zoom out & inspect materials</div>
+                </div>
+              </div>
+              <div id="baseOptionsGrid" class="base-options-grid">
+                <!-- JS will populate base options -->
+              </div>
+            </div>
+
+            <!-- STEP 2: CHOOSE PRODUCTS (MAKEUP, CHOCOLATES & SELF-CARE) -->
+            <div class="builder-step-section">
+              <div class="builder-step-header">
+                <div class="step-num">2</div>
+                <div>
+                  <h3 class="step-title">Select Products & Cosmetics</h3>
+                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Luxury lipsticks, serums, eyeshadow palettes & treats</div>
+                </div>
+              </div>
+              <div id="productsPickerGrid" class="products-picker-grid">
+                <!-- JS will populate products -->
+              </div>
+            </div>
+
+            <!-- STEP 3: SPECIAL REQUESTS & FLORAL TOUCHES -->
+            <div class="builder-step-section">
+              <div class="builder-step-header">
+                <div class="step-num">3</div>
+                <div>
+                  <h3 class="step-title">Florals & Luxury Touches</h3>
+                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Add fresh flowers, fairy lights & calligraphy card</div>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:20px;">
+                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:12px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
+                  <input type="checkbox" onchange="toggleAddon('freshRoses')">
+                  <div>
+                    <div style="font-weight:700; font-size:0.9rem; color:var(--color-dark-olive);">🌹 Fresh Red Roses</div>
+                    <div style="font-size:0.78rem; color:var(--color-champagne); font-weight:700;">+₹299 / $3.50</div>
+                  </div>
+                </label>
+
+                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:12px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
+                  <input type="checkbox" onchange="toggleAddon('fairyLights')">
+                  <div>
+                    <div style="font-weight:700; font-size:0.9rem; color:var(--color-dark-olive);">✨ LED Fairy Lights</div>
+                    <div style="font-size:0.78rem; color:var(--color-champagne); font-weight:700;">+₹149 / $1.80</div>
+                  </div>
+                </label>
+
+                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:12px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
+                  <input type="checkbox" onchange="toggleAddon('waxSealCard')">
+                  <div>
+                    <div style="font-weight:700; font-size:0.9rem; color:var(--color-dark-olive);">💌 Wax Seal Note</div>
+                    <div style="font-size:0.78rem; color:var(--color-champagne); font-weight:700;">+₹99 / $1.20</div>
+                  </div>
+                </label>
+              </div>
+
+              <div>
+                <label style="display:block; font-size:0.82rem; font-weight:700; color:var(--color-dark-olive); margin-bottom:6px;">Custom Calligraphy Message Card</label>
+                <textarea id="hamperCardMessage" rows="3" placeholder="Write your heartfelt message to be hand-calligraphed..." style="width:100%; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--color-border); outline:none; background:var(--color-soft-cream);"></textarea>
+              </div>
+            </div>
           </div>
 
-          <button type="submit" class="btn btn-gold btn-full btn-large">
-            <span>START MY CUSTOM HAMPER →</span>
-          </button>
-        </form>
+          <!-- DYNAMIC LIVE PREVIEW SIDEBAR -->
+          <div>
+            <div class="live-preview-sidebar">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+                <h4 style="font-family:var(--font-serif); font-size:1.4rem; color:var(--color-dark-olive);">
+                  <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-champagne);"></i> Live Preview
+                </h4>
+                <span class="font-script gold-gradient-text" style="font-size:1.3rem;">Bespoke Craft</span>
+              </div>
+
+              <div class="live-preview-box">
+                <div id="previewBaseName" class="preview-base-tag">
+                  🪵 Handcrafted Wooden Basket
+                </div>
+                <ul id="previewItemList" class="preview-item-list">
+                  <!-- Dynamic items list -->
+                </ul>
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; font-family:var(--font-serif); font-size:1.4rem; font-weight:700; color:var(--color-dark-olive); margin-bottom:20px; padding-top:10px; border-top:1px solid var(--color-border);">
+                <span>Total Cost:</span>
+                <span id="previewTotalEl" style="color:var(--color-champagne);">₹599</span>
+              </div>
+
+              <button id="addCustomHamperBtn" class="btn btn-gold btn-large" style="width:100%;">
+                <i class="fa-solid fa-cart-plus"></i> ADD CUSTOM HAMPER TO CART
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -166,16 +240,6 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById('customForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var name = document.getElementById('cName').value;
-      var phone = document.getElementById('cPhone').value;
-      var occ = document.getElementById('cOccasion').value;
-      var msg = document.getElementById('cMessage').value;
-      var wa = "Hi D's Wrapping Studio! Custom Hamper Order from " + name + " (" + phone + "):\n- Occasion: " + occ + "\n- Notes: " + msg;
-      window.open("https://wa.me/919876543210?text=" + encodeURIComponent(wa), "_blank");
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
