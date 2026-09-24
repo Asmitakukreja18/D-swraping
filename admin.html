@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | D’s Wrapping Studio Backend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background-color: #f4f6f8; font-family: 'Plus Jakarta Sans', sans-serif; color: #2e382d; }
+    .admin-sidebar { width: 260px; background: #263724; color: #fff; min-height: 100vh; padding: 30px 20px; position: fixed; left: 0; top: 0; }
+    .admin-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #B9A16A; margin-bottom: 40px; border-bottom: 1px solid rgba(185, 161, 106, 0.3); padding-bottom: 16px; }
+    .admin-nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #d9ceba; border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+    .admin-nav-item:hover, .admin-nav-item.active { background: #31452F; color: #fff; border-left: 4px solid #B9A16A; }
+    .admin-main { margin-left: 260px; padding: 40px; }
+    .stat-card { background: #fff; border-radius: 12px; padding: 24px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .stat-val { font-size: 1.8rem; font-weight: 800; color: #263724; margin-top: 6px; }
+    .admin-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-top: 20px; }
+    .admin-table th, .admin-table td { padding: 14px 18px; text-align: left; font-size: 0.88rem; border-bottom: 1px solid #edf2f7; }
+    .admin-table th { background: #f8fafc; font-weight: 700; color: #475569; }
+    .status-badge { padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
+    .status-placed { background: #e0f2fe; color: #0369a1; }
+    .status-processing { background: #fef3c7; color: #b45309; }
+    .status-shipped { background: #e0e7ff; color: #4338ca; }
+    .status-delivered { background: #dcfce7; color: #15803d; }
+  </style>
+</head>
+<body>
+
+  <!-- ADMIN SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <i class="fa-solid fa-ribbon"></i> D’s Studio Admin
+    </div>
+    <nav>
+      <div class="admin-nav-item active" onclick="switchAdminTab('ordersTab', this)">
+        <i class="fa-solid fa-box-archive"></i> Orders Management
+      </div>
+      <div class="admin-nav-item" onclick="switchAdminTab('productsTab', this)">
+        <i class="fa-solid fa-boxes-packing"></i> Products Catalog
+      </div>
+      <div class="admin-nav-item" onclick="switchAdminTab('enquiriesTab', this)">
+        <i class="fa-solid fa-comments"></i> Customer Enquiries
+      </div>
+      <a href="index.html" class="admin-nav-item" style="margin-top:40px; color:#f87171;">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Exit to Website
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN DASHBOARD CONTENT -->
+  <main class="admin-main">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+      <div>
+        <h1 style="font-family:'Cormorant Garamond', serif; font-size:2.2rem; color:#263724;">Admin Control Panel</h1>
+        <p style="font-size:0.9rem; color:#64748b;">Manage Pan-India orders, update shipping status & add products.</p>
+      </div>
+      <button onclick="fetchAdminData()" class="btn btn-sm btn-gold">
+        <i class="fa-solid fa-rotate"></i> Refresh Data
+      </button>
+    </div>
+
+    <!-- STATS OVERVIEW CARDS -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-bottom:30px;">
+      <div class="stat-card">
+        <div style="font-size:0.8rem; font-weight:700; color:#64748b; text-transform:uppercase;">Total Revenue</div>
+        <div id="statRevenue" class="stat-val">₹0</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:0.8rem; font-weight:700; color:#64748b; text-transform:uppercase;">Total Orders</div>
+        <div id="statOrders" class="stat-val">0</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:0.8rem; font-weight:700; color:#64748b; text-transform:uppercase;">Active Products</div>
+        <div id="statProducts" class="stat-val">0</div>
+      </div>
+    </div>
+
+    <!-- TAB 1: ORDERS MANAGEMENT -->
+    <div id="ordersTab">
+      <h3 style="font-family:'Cormorant Garamond', serif; font-size:1.5rem; color:#263724; margin-bottom:12px;">Pan-India Customer Orders</h3>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Order Code</th>
+            <th>Customer & Phone</th>
+            <th>Shipping Address</th>
+            <th>Items</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Update Status</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody">
+          <tr><td colspan="7" style="text-align:center;">Loading orders...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TAB 2: PRODUCTS CATALOG MANAGEMENT -->
+    <div id="productsTab" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-family:'Cormorant Garamond', serif; font-size:1.5rem; color:#263724;">Product Catalog Management</h3>
+        <button onclick="document.getElementById('addProductModal').style.display='block'" class="btn btn-sm btn-primary-olive">
+          + Add New Product
+        </button>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Price (INR)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsTableBody">
+          <tr><td colspan="6" style="text-align:center;">Loading catalog products...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TAB 3: ENQUIRIES TAB -->
+    <div id="enquiriesTab" style="display:none;">
+      <h3 style="font-family:'Cormorant Garamond', serif; font-size:1.5rem; color:#263724; margin-bottom:12px;">Custom Hamper & Contact Enquiries</h3>
+      <div id="enquiriesContainer" style="display:grid; gap:16px;">
+        <p>Loading enquiries...</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function switchAdminTab(tabId, el) {
+      document.getElementById('ordersTab').style.display = tabId === 'ordersTab' ? 'block' : 'none';
+      document.getElementById('productsTab').style.display = tabId === 'productsTab' ? 'block' : 'none';
+      document.getElementById('enquiriesTab').style.display = tabId === 'enquiriesTab' ? 'block' : 'none';
+      document.querySelectorAll('.admin-nav-item').forEach(item => item.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    async function fetchAdminData() {
+      try {
+        const [ordersRes, prodRes] = await Promise.all([
+          fetch('/api/admin/orders'),
+          fetch('/api/products')
+        ]);
+
+        const orders = await ordersRes.json();
+        const products = await prodRes.json();
+
+        // Calculate Revenue
+        const totalRev = orders.reduce((sum, o) => sum + (o.total_inr || 0), 0);
+        document.getElementById('statRevenue').textContent = `₹${totalRev.toLocaleString('en-IN')}`;
+        document.getElementById('statOrders').textContent = orders.length;
+        document.getElementById('statProducts').textContent = products.length;
+
+        // Render Orders Table
+        const tbody = document.getElementById('ordersTableBody');
+        if (orders.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No orders placed yet.</td></tr>';
+        } else {
+          tbody.innerHTML = orders.map(o => `
+            <tr>
+              <td><strong>${o.order_code}</strong></td>
+              <td>${o.customer_name}<br><span style="font-size:0.75rem; color:#64748b;">${o.customer_phone}</span></td>
+              <td style="max-width:220px;">${o.shipping_address}, ${o.city}, ${o.state} - ${o.pincode}</td>
+              <td>
+                <div style="font-size:0.8rem;">
+                  ${(o.items || []).map(i => `• ${i.name} (x${i.qty})`).join('<br>')}
+                </div>
+              </td>
+              <td><strong>₹${(o.total_inr || 0).toLocaleString('en-IN')}</strong></td>
+              <td>
+                <span class="status-badge status-${(o.order_status || 'placed').toLowerCase().replace(' ', '')}">
+                  ${o.order_status || 'Order Placed'}
+                </span>
+              </td>
+              <td>
+                <select onchange="updateOrderStatus(${o.id}, this.value)" style="padding:6px; border-radius:6px; border:1px solid #cbd5e1; font-size:0.8rem;">
+                  <option value="Order Placed" ${o.order_status === 'Order Placed' ? 'selected' : ''}>Order Placed</option>
+                  <option value="Processing" ${o.order_status === 'Processing' ? 'selected' : ''}>Processing</option>
+                  <option value="Shipped" ${o.order_status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                  <option value="Delivered" ${o.order_status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                </select>
+              </td>
+            </tr>
+          `).join('');
+        }
+
+        // Render Products Table
+        const pTbody = document.getElementById('productsTableBody');
+        pTbody.innerHTML = products.map(p => `
+          <tr>
+            <td>#${p.id}</td>
+            <td><img src="${p.img}" alt="${p.name}" style="width:50px; height:50px; object-fit:cover; border-radius:6px;"></td>
+            <td><strong>${p.name}</strong></td>
+            <td>${p.category}</td>
+            <td>₹${p.price_inr.toLocaleString('en-IN')}</td>
+            <td>
+              <button onclick="deleteProduct(${p.id})" style="background:#fee2e2; color:#ef4444; border:none; padding:6px 12px; border-radius:6px; font-weight:700; cursor:pointer;">
+                Delete
+              </button>
+            </td>
+          </tr>
+        `).join('');
+
+      } catch (err) {
+        console.error('Error fetching admin data:', err);
+      }
+    }
+
+    async function updateOrderStatus(orderId, newStatus) {
+      try {
+        const res = await fetch(`/api/admin/orders/${orderId}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (res.ok) {
+          alert(`Order status updated to '${newStatus}'!`);
+          fetchAdminData();
+        }
+      } catch (err) {
+        alert('Failed to update order status');
+      }
+    }
+
+    // Load data on page load
+    fetchAdminData();
+  </script>
+</body>
+</html>
