@@ -4,37 +4,41 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // 0. FIRST INJECT MODALS DOM (Cart & Checkout) IF NOT PRESENT
+  injectModalsDOM();
+
   /* ------------------------------------------------------------------------
      1. NAVBAR GLASSMORPHISM & SCROLL OBSERVER
      ------------------------------------------------------------------------ */
-  const navbar = document.getElementById('navbar');
+  const navbar = document.getElementById('navbar') || document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-
-    // ScrollSpy active link toggle
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
       }
-    });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+      // ScrollSpy active link toggle
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        if (current && link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
     });
-  });
+  }
 
   /* ------------------------------------------------------------------------
      2. MOBILE MENU OVERLAY TOGGLE
@@ -643,13 +647,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openCart() {
     updateCartUI();
-    cartDrawerOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    const cartOverlay = document.getElementById('cartDrawerOverlay');
+    if (cartOverlay) {
+      cartOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   function closeCart() {
-    cartDrawerOverlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    const cartOverlay = document.getElementById('cartDrawerOverlay');
+    if (cartOverlay) {
+      cartOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
   }
 
   // Global Add to Cart Function
@@ -733,15 +743,18 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
   };
 
-  // Attach event listener to all static Add to Cart buttons across site
-  document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  // Attach event delegation for all Add to Cart buttons across site
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.add-to-cart-btn');
+    if (btn) {
       e.preventDefault();
       const name = btn.dataset.name || 'Luxury Hamper Box';
       const price = parseInt(btn.dataset.price || '1999', 10);
-      const img = btn.dataset.img || 'assets/gallery-3.jpeg';
-      window.addItemToCart(name, price, img);
-    });
+      const img = btn.dataset.img || 'assets/wa-product-1.jpg';
+      if (typeof window.addItemToCart === 'function') {
+        window.addItemToCart(name, price, img);
+      }
+    }
   });
 
   // Open Checkout Modal
@@ -883,7 +896,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectBase = function(id, name, price, img) {
       selectedBase = { id, name, price, img };
       document.querySelectorAll('.base-card').forEach(el => el.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('selected');
+      }
       updateHamperBuilderUI();
     };
 
