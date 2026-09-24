@@ -206,7 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "Grand Celebration Hamper", category: "Festive Gifting", img: "assets/gallery-10.jpeg" },
     { name: "Chocoberry Balloon Gift", category: "Balloon Gifts", img: "assets/gallery-5.jpeg" },
     { name: "Signature Corporate Crate", category: "Corporate", img: "assets/gallery-8.jpeg" },
-    { name: "Golden Ribbon Chocolate Trunk", category: "Chocolates", img: "assets/gallery-6.jpeg" }
+    { name: "Golden Ribbon Chocolate Trunk", category: "Chocolates", img: "assets/gallery-6.jpeg" },
+    { name: "Signature Satin Craft Wrap", category: "Custom Wrapping", img: "assets/gallery-7.jpeg" }
   ];
 
   if (searchBtn && searchModal && closeSearchModal) {
