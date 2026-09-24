@@ -210,8 +210,15 @@
               </div>
 
               <div class="live-preview-box">
-                <div id="previewBaseName" class="preview-base-tag">
-                  🪵 Handcrafted Wooden Basket
+                <div style="position:relative; width:100%; height:180px; border-radius:var(--radius-md); overflow:hidden; margin-bottom:14px; border:1px solid var(--color-champagne); box-shadow:var(--shadow-sm);">
+                  <img id="previewVisualImg" src="assets/base-wooden.jpg" alt="Hamper Base Preview" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+                  <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(38, 55, 36, 0.85), transparent 60%); padding:12px; display:flex; flex-direction:column; justify-content:flex-end;">
+                    <span id="previewBaseTag" style="font-size:0.82rem; font-weight:700; color:var(--color-champagne); background:rgba(38, 55, 36, 0.9); padding:4px 10px; border-radius:var(--radius-sm); border:1px solid var(--color-champagne); display:inline-block;">🪵 Handcrafted Wooden Basket</span>
+                  </div>
+                </div>
+
+                <div style="font-size:0.8rem; font-weight:700; color:var(--color-dark-olive); margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                  <i class="fa-solid fa-list-check" style="color:var(--color-champagne);"></i> CONTENTS IN YOUR HAMPER:
                 </div>
                 <ul id="previewItemList" class="preview-item-list">
                   <!-- Dynamic items list -->

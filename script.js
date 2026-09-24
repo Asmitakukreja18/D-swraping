@@ -917,11 +917,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateHamperBuilderUI = function() {
       const liveList = document.getElementById('previewItemList');
       const liveTotal = document.getElementById('previewTotalEl');
-      const liveBaseName = document.getElementById('previewBaseName');
+      const previewBaseTag = document.getElementById('previewBaseTag');
+      const previewVisualImg = document.getElementById('previewVisualImg');
 
       if (!liveList) return;
 
-      if (liveBaseName) liveBaseName.textContent = selectedBase.name;
+      if (previewBaseTag) previewBaseTag.textContent = '🪵 ' + selectedBase.name;
+      if (previewVisualImg) previewVisualImg.src = selectedBase.img;
 
       let total = selectedBase.price;
       let itemsHTML = `<li><span>🪵 ${selectedBase.name}</span> <span>${formatMoney(selectedBase.price)}</span></li>`;
@@ -947,6 +949,9 @@ document.addEventListener('DOMContentLoaded', () => {
       liveList.innerHTML = itemsHTML;
       if (liveTotal) liveTotal.textContent = formatMoney(total);
     };
+
+    // Initial render call
+    updateHamperBuilderUI();
 
     // Add Custom Hamper to Cart
     const addCustomHamperBtn = document.getElementById('addCustomHamperBtn');
