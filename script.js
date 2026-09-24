@@ -199,15 +199,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchResults = document.getElementById('searchResults');
 
   const productsData = [
-    { name: "The Royal Velvet Luxe Hamper", category: "Luxury Hampers", img: "assets/gallery-3.jpeg" },
-    { name: "Blush Romance Bouquet", category: "Bouquets", img: "assets/gallery-9.jpeg" },
-    { name: "Personalized Keepsake Tray", category: "Personalized", img: "assets/gallery-2.jpeg" },
-    { name: "Serene Self-Care Spa Box", category: "Self-Care", img: "assets/gallery-4.jpeg" },
-    { name: "Grand Celebration Hamper", category: "Festive Gifting", img: "assets/gallery-10.jpeg" },
-    { name: "Chocoberry Balloon Gift", category: "Balloon Gifts", img: "assets/gallery-5.jpeg" },
-    { name: "Signature Corporate Crate", category: "Corporate", img: "assets/gallery-8.jpeg" },
-    { name: "Golden Ribbon Chocolate Trunk", category: "Chocolates", img: "assets/gallery-6.jpeg" },
-    { name: "Signature Satin Craft Wrap", category: "Custom Wrapping", img: "assets/gallery-7.jpeg" }
+    { name: "Royal Velvet Golden Hamper", category: "Luxury Hampers", img: "assets/wa-product-1.jpg" },
+    { name: "Blush Satin Floral Gift Box", category: "Bouquets & Boxes", img: "assets/wa-product-2.jpg" },
+    { name: "Vintage Wooden Artisan Tray", category: "Personalized Gifts", img: "assets/wa-product-3.jpg" },
+    { name: "Pastel Net & Pearl Wrap Hamper", category: "Custom Wrapping", img: "assets/wa-product-4.jpg" },
+    { name: "Chocoberry Luxe Balloon Basket", category: "Balloon Gifts", img: "assets/wa-product-5.jpg" },
+    { name: "Grand Imperial Festive Hamper", category: "Festive Hampers", img: "assets/wa-product-6.jpg" },
+    { name: "Executive Corporate Crate", category: "Corporate Gifting", img: "assets/wa-product-7.jpg" },
+    { name: "Serene Lavender Spa Hamper", category: "Self-Care & Spa", img: "assets/wa-product-8.jpg" },
+    { name: "Golden Ribbon Chocolate Box", category: "Chocolates", img: "assets/wa-product-9.jpg" },
+    { name: "Pearl & Bow Trousseau Trunk", category: "Wedding & Trousseau", img: "assets/wa-product-10.jpg" },
+    { name: "Baby Shower Keepsake Basket", category: "Baby & Kids Gifts", img: "assets/wa-product-11.jpg" }
   ];
 
   if (searchBtn && searchModal && closeSearchModal) {

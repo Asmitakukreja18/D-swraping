@@ -70,14 +70,17 @@ db.serialize(() => {
     if (!err && row.count === 0) {
       console.log('Seeding initial products catalogue into database...');
       const initialProducts = [
-        ['The Royal Velvet Luxe Hamper', 'Luxury Hampers', 2499, 'assets/gallery-3.jpeg', 'Opulent velvet box with gourmet artisanal treats, fragrant soy candle & luxury chocolates.'],
-        ['Blush Romance Bouquet', 'Bouquets', 1799, 'assets/gallery-9.jpeg', 'Exquisite arrangement of fresh roses paired with imported Ferrero Rocher & custom note card.'],
-        ['Personalized Keepsake Tray', 'Personalized Gifts', 1499, 'assets/gallery-2.jpeg', 'Handcrafted wooden tray with customized name typography, gifts & frame.'],
-        ['Serene Self-Care Spa Box', 'Self-Care', 1299, 'assets/gallery-4.jpeg', 'Relaxing spa hamper with scented soy candle, bath salts & lavender body oil.'],
-        ['Grand Celebration Hamper', 'Festive Hampers', 2999, 'assets/gallery-10.jpeg', 'Festive basket styled with golden bells, dry fruits & handcrafted brass lamps.'],
-        ['Chocoberry Balloon Gift', 'Balloon Gifts', 1599, 'assets/gallery-5.jpeg', 'Bubble balloon hamper filled with gourmet chocolates and mini roses.'],
-        ['Signature Corporate Crate', 'Corporate', 3499, 'assets/gallery-8.jpeg', 'Premium leatherette crate with luxury notebook, custom mug & treats.'],
-        ['Golden Ribbon Chocolate Trunk', 'Chocolates', 1899, 'assets/gallery-6.jpeg', 'Vintage wooden trunk filled with artisanal chocolates and satin ribbon.']
+        ['Royal Velvet Golden Hamper', 'Luxury Hampers', 2899, 'assets/wa-product-1.jpg', 'Opulent trunk hamper filled with premium chocolates, dry fruits, and handcrafted keepsakes.'],
+        ['Blush Satin Floral Gift Box', 'Bouquets', 1999, 'assets/wa-product-2.jpg', 'Delicate blush pink box styled with fresh pastel roses and custom ribbon ties.'],
+        ['Vintage Wooden Artisan Tray', 'Personalized Gifts', 2499, 'assets/wa-product-3.jpg', 'Rustic wooden tray arrangement featuring personalized name tag and luxury treats.'],
+        ['Pastel Net & Pearl Wrap Hamper', 'Custom Wrapping', 1699, 'assets/wa-product-4.jpg', 'Elegant tulle & net overlay finished with handcrafted pearl embellishments.'],
+        ['Chocoberry Luxe Balloon Basket', 'Balloon Gifts', 1899, 'assets/wa-product-5.jpg', 'Bubble balloon hamper paired with imported chocolates and fresh flower buds.'],
+        ['Grand Imperial Festive Hamper', 'Festive Hampers', 3299, 'assets/wa-product-6.jpg', 'Festive curation with brass diyas, premium dry fruits, and artisanal sweets.'],
+        ['Executive Corporate Crate', 'Corporate', 2199, 'assets/wa-product-7.jpg', 'Sleek executive gift set for clients, conferences, and corporate celebrations.'],
+        ['Serene Lavender Spa Hamper', 'Self-Care', 1799, 'assets/wa-product-8.jpg', 'Calming self-care spa box with botanical candle, bath salts, and essential oils.'],
+        ['Golden Ribbon Chocolate Box', 'Chocolates', 1499, 'assets/wa-product-9.jpg', 'Handcrafted luxury chocolate selection wrapped with gold foil accents.'],
+        ['Pearl & Bow Trousseau Trunk', 'Wedding & Trousseau', 3499, 'assets/wa-product-10.jpg', 'Bridal trousseau hamper elegantly draped in pearl chains and ivory silk bows.'],
+        ['Baby Shower Keepsake Basket', 'Baby & Kids', 2299, 'assets/wa-product-11.jpg', 'Adorable pastel baby hamper filled with custom plush items, socks, and treats.']
       ];
 
       const stmt = db.prepare('INSERT INTO products (name, category, price_inr, img, description) VALUES (?, ?, ?, ?, ?)');
