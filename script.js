@@ -279,8 +279,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const openBuilder = () => {
-    builderModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    if (builderModal) {
+      builderModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    } else {
+      window.location.href = 'custom-hampers.html#hamperBuilderContainer';
+    }
   };
 
   if (openBuilderNavBtn) openBuilderNavBtn.addEventListener('click', openBuilder);
@@ -893,37 +897,90 @@ document.addEventListener('DOMContentLoaded', () => {
       'waxSealCard': { name: 'Calligraphy Wax Seal Card', price: 99 }
     };
 
-    // Render Base Options
-    const baseGrid = document.getElementById('baseOptionsGrid');
-    if (baseGrid) {
-      const bases = [
-        { id: 'wooden', name: 'Handcrafted Wooden Basket', price: 599, img: 'assets/base-wooden.jpg', desc: 'Rustic oak wooden trunk with woven rope handles.' },
-        { id: 'acrylic', name: 'Transparent Acrylic Crate', price: 699, img: 'assets/base-acrylic.jpg', desc: 'Crystal clear luxury acrylic box with brass latches.' },
-        { id: 'net', name: 'Pastel Net & Tulle Wrap', price: 349, img: 'assets/base-net.jpg', desc: 'Elegant blush pink net wrapping with pearl bow ribbon.' },
-        { id: 'velvet', name: 'Royal Velvet Treasure Trunk', price: 899, img: 'assets/base-velvet.jpg', desc: 'Deep green velvet box lined with soft satin.' },
-        { id: 'satin', name: 'Signature Satin Box', price: 449, img: 'assets/gallery-2.jpeg', desc: 'Handmade luxury satin gift container.' }
-      ];
+    const basesCatalog = [
+      { id: 'wooden', name: 'Handcrafted Wooden Basket', price: 599, img: 'assets/base-wooden.jpg', desc: 'Rustic oak wooden trunk with woven rope handles.' },
+      { id: 'acrylic', name: 'Transparent Acrylic Crate', price: 699, img: 'assets/base-acrylic.jpg', desc: 'Crystal clear luxury acrylic box with brass latches.' },
+      { id: 'net', name: 'Pastel Net & Tulle Wrap', price: 349, img: 'assets/base-net.jpg', desc: 'Elegant blush pink net wrapping with pearl bow ribbon.' },
+      { id: 'velvet', name: 'Royal Velvet Treasure Trunk', price: 899, img: 'assets/base-velvet.jpg', desc: 'Deep green velvet box lined with soft satin.' },
+      { id: 'satin', name: 'Signature Satin Box', price: 449, img: 'assets/gallery-2.jpeg', desc: 'Handmade luxury satin gift container.' }
+    ];
 
-      baseGrid.innerHTML = bases.map(b => `
-        <div class="base-card pointer-zoom-card ${b.id === selectedBase.id ? 'selected' : ''}" onclick="selectBase('${b.id}', '${b.name}', ${b.price}, '${b.img}')">
-          <button class="zoom-badge-btn" onclick="event.stopPropagation(); openZoomModal('${b.img}', '${b.name}', '${b.desc}')" title="Zoom Out Preview">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-          </button>
-          <img src="${b.img}" alt="${b.name}">
-          <div class="base-name">${b.name}</div>
-          <div class="base-price">${formatMoney(b.price)}</div>
-        </div>
-      `).join('');
+    let currentActiveStep = 1;
+
+    // STEP NAVIGATION TABS & WIZARD CONTROL
+    window.switchHamperStep = function(stepNum) {
+      currentActiveStep = stepNum;
+      
+      // Update Tab styling
+      [1, 2, 3, 4].forEach(num => {
+        const tabEl = document.getElementById(`stepTab${num}`);
+        const paneEl = document.getElementById(`builderStep${num}`);
+        
+        if (tabEl) {
+          if (num === stepNum) {
+            tabEl.className = 'builder-step-tab active';
+          } else if (num < stepNum) {
+            tabEl.className = 'builder-step-tab completed';
+          } else {
+            tabEl.className = 'builder-step-tab';
+          }
+        }
+        
+        if (paneEl) {
+          if (num === stepNum) {
+            paneEl.style.display = 'block';
+            paneEl.classList.add('active-step');
+          } else {
+            paneEl.style.display = 'none';
+            paneEl.classList.remove('active-step');
+          }
+        }
+      });
+
+      // Scroll hamper studio header smoothly into view if on mobile/smaller screens
+      const container = document.getElementById('hamperBuilderContainer');
+      if (container && window.innerWidth < 992) {
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      updateHamperBuilderUI();
+    };
+
+    // Render Base Options
+    function renderBaseOptions() {
+      const baseGrid = document.getElementById('baseOptionsGrid');
+      if (!baseGrid) return;
+
+      baseGrid.innerHTML = basesCatalog.map(b => {
+        const isSelected = b.id === selectedBase.id;
+        return `
+          <div class="base-card pointer-zoom-card ${isSelected ? 'selected' : ''}" onclick="selectBase('${b.id}', '${b.name.replace(/'/g, "\\'")}', ${b.price}, '${b.img}')">
+            <button class="zoom-badge-btn" onclick="event.stopPropagation(); openZoomModal('${b.img}', '${b.name.replace(/'/g, "\\'")}', '${b.desc.replace(/'/g, "\\'")}')" title="Zoom Preview">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </button>
+            <img src="${b.img}" alt="${b.name}">
+            <div class="base-name">${b.name}</div>
+            <div class="base-price">${formatMoney(b.price)}</div>
+            <button class="btn btn-sm ${isSelected ? 'btn-gold' : 'btn-outline'} select-btn-ui" style="margin-top:8px; width:100%;">
+              ${isSelected ? 'SELECTED ✓' : 'SELECT BASE'}
+            </button>
+          </div>
+        `;
+      }).join('');
     }
 
     // Render Products Picker
-    const productsGrid = document.getElementById('productsPickerGrid');
-    if (productsGrid) {
+    function renderProductsPicker() {
+      const productsGrid = document.getElementById('productsPickerGrid');
+      if (!productsGrid) return;
+
       productsGrid.innerHTML = Object.keys(productsCatalog).map(key => {
         const item = productsCatalog[key];
+        const qty = selectedProducts[key] || 0;
+        const isSelected = qty > 0;
         return `
-          <div id="product_picker_card_${key}" class="product-picker-card pointer-zoom-card">
-            <button class="zoom-badge-btn" onclick="openZoomModal('${item.img}', '${item.name}', 'Category: ${item.category}')" title="Zoom Preview">
+          <div id="product_picker_card_${key}" class="product-picker-card pointer-zoom-card ${isSelected ? 'selected-product' : ''}" onclick="handleProductCardClick('${key}', event)">
+            <button class="zoom-badge-btn" onclick="event.stopPropagation(); openZoomModal('${item.img}', '${item.name.replace(/'/g, "\\'")}', 'Category: ${item.category}')" title="Zoom Preview">
               <i class="fa-solid fa-magnifying-glass-plus"></i>
             </button>
             <img src="${item.img}" alt="${item.name}" class="product-picker-img">
@@ -932,10 +989,10 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="base-name">${item.name}</div>
               <div class="base-price">${formatMoney(item.price)}</div>
             </div>
-            <div class="picker-qty-controls">
-              <button class="qty-btn" onclick="changeHamperItemQty('${key}', -1)">-</button>
-              <span id="hamper_item_qty_${key}" style="font-weight:700; font-size:0.95rem; color:var(--color-dark-olive);">0</span>
-              <button class="qty-btn" onclick="changeHamperItemQty('${key}', 1)">+</button>
+            <div class="picker-qty-controls" onclick="event.stopPropagation();">
+              <button class="qty-btn" onclick="event.stopPropagation(); changeHamperItemQty('${key}', -1)">-</button>
+              <span id="hamper_item_qty_${key}" style="font-weight:700; font-size:0.95rem; color:var(--color-dark-olive);">${qty}</span>
+              <button class="qty-btn" onclick="event.stopPropagation(); changeHamperItemQty('${key}', 1)">+</button>
             </div>
           </div>
         `;
@@ -944,15 +1001,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.selectBase = function(id, name, price, img) {
       selectedBase = { id, name, price, img };
-      document.querySelectorAll('.base-card').forEach(el => el.classList.remove('selected'));
-      if (window.event && window.event.currentTarget) {
-        window.event.currentTarget.classList.add('selected');
+      const step1SelectedName = document.getElementById('step1SelectedName');
+      if (step1SelectedName) step1SelectedName.textContent = name;
+      renderBaseOptions();
+      updateHamperBuilderUI();
+    };
+
+    window.handleProductCardClick = function(key, event) {
+      if (!selectedProducts[key] || selectedProducts[key] === 0) {
+        selectedProducts[key] = 1;
       }
+      renderProductsPicker();
       updateHamperBuilderUI();
     };
 
     window.changeHamperItemQty = function(key, delta) {
       selectedProducts[key] = Math.max(0, (selectedProducts[key] || 0) + delta);
+      renderProductsPicker();
       updateHamperBuilderUI();
     };
 
@@ -964,6 +1029,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.toggleAddon = function(key) {
       selectedAddons[key] = !selectedAddons[key];
+      const cb = document.getElementById(`addon_${key}`);
+      if (cb) cb.checked = !!selectedAddons[key];
       updateHamperBuilderUI();
     };
 
@@ -978,30 +1045,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (previewBaseTag) previewBaseTag.textContent = '🪵 ' + selectedBase.name;
       if (previewVisualImg) previewVisualImg.src = selectedBase.img;
 
-      // Update grid product picker cards visual active state & quantities
-      Object.keys(productsCatalog).forEach(k => {
-        const qty = selectedProducts[k] || 0;
-        const cardEl = document.getElementById(`product_picker_card_${k}`);
-        const qtyEl = document.getElementById(`hamper_item_qty_${k}`);
-        if (qtyEl) qtyEl.textContent = qty;
-        if (cardEl) {
-          if (qty > 0) {
-            cardEl.style.border = '2px solid var(--color-champagne)';
-            cardEl.style.backgroundColor = '#ffffff';
-            cardEl.style.boxShadow = 'var(--shadow-gold)';
-          } else {
-            cardEl.style.border = '1px solid var(--color-border)';
-            cardEl.style.backgroundColor = 'var(--color-soft-cream)';
-            cardEl.style.boxShadow = 'none';
-          }
-        }
-      });
-
       let total = selectedBase.price;
+      let itemsListArray = [];
+
       let itemsHTML = `<li style="display:flex; justify-content:space-between; align-items:center; padding-bottom:6px; border-bottom:1px solid var(--color-border);">
         <span>🪵 ${selectedBase.name}</span>
         <span style="font-weight:700;">${formatMoney(selectedBase.price)}</span>
       </li>`;
+
+      itemsListArray.push(`🪵 ${selectedBase.name} (${formatMoney(selectedBase.price)})`);
 
       if (customPresetItem) {
         const presetTotal = customPresetItem.price;
@@ -1016,6 +1068,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button onclick="removePresetItem()" style="background:none; border:none; color:#c1121f; cursor:pointer; font-weight:700;" title="Remove Preset">&times;</button>
           </div>
         </li>`;
+        itemsListArray.push(`🎁 ${customPresetItem.name}`);
       }
 
       Object.keys(selectedProducts).forEach(k => {
@@ -1030,14 +1083,15 @@ document.addEventListener('DOMContentLoaded', () => {
               <div style="font-size:0.75rem; color:var(--color-champagne); font-weight:700;">${formatMoney(item.price)} each</div>
             </div>
             <div style="display:flex; align-items:center; gap:6px;">
-              <div class="picker-qty-controls" style="padding:2px 6px; margin:0;">
-                <button class="qty-btn" onclick="changeHamperItemQty('${k}', -1)" style="width:22px; height:22px; font-size:0.8rem;">-</button>
+              <div class="picker-qty-controls" style="padding:2px 6px; margin:0;" onclick="event.stopPropagation();">
+                <button class="qty-btn" onclick="event.stopPropagation(); changeHamperItemQty('${k}', -1)" style="width:22px; height:22px; font-size:0.8rem;">-</button>
                 <span style="font-weight:700; font-size:0.85rem; padding:0 4px; min-width:14px; text-align:center;">${qty}</span>
-                <button class="qty-btn" onclick="changeHamperItemQty('${k}', 1)" style="width:22px; height:22px; font-size:0.8rem;">+</button>
+                <button class="qty-btn" onclick="event.stopPropagation(); changeHamperItemQty('${k}', 1)" style="width:22px; height:22px; font-size:0.8rem;">+</button>
               </div>
               <span style="font-weight:700; font-size:0.88rem; color:var(--color-dark-olive); min-width:60px; text-align:right;">${formatMoney(itemCost)}</span>
             </div>
           </li>`;
+          itemsListArray.push(`✨ ${item.name} (x${qty})`);
         }
       });
 
@@ -1049,14 +1103,26 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>🌸 ${addon.name}</span>
             <span style="font-weight:700;">${formatMoney(addon.price)}</span>
           </li>`;
+          itemsListArray.push(`🌸 ${addon.name}`);
         }
       });
 
       liveList.innerHTML = itemsHTML;
       if (liveTotal) liveTotal.textContent = formatMoney(total);
+
+      // Update Step 4 review panel if present
+      const sumOccasion = document.getElementById('sumOccasion');
+      const sumVibe = document.getElementById('sumVibe');
+      const sumItems = document.getElementById('sumItems');
+      if (sumOccasion) sumOccasion.textContent = selectedBase.name;
+      if (sumVibe) sumVibe.textContent = formatMoney(total);
+      if (sumItems) sumItems.innerHTML = itemsListArray.map(it => `<div>• ${it}</div>`).join('');
     };
 
-    // Initial render call
+    // Initial renders & setup
+    renderBaseOptions();
+    renderProductsPicker();
+    switchHamperStep(1);
     updateHamperBuilderUI();
 
     // If loaded preset from collection, show toast & scroll to builder
