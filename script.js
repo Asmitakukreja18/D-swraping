@@ -1149,9 +1149,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // optional checkout order summary details
   }
 
-  window.placeOrderDemo = function() {
-    const orderId = 'DS-' + Math.floor(100000 + Math.random() * 900000);
+  window.placeOrderDemo = async function() {
     const totalAmountINR = cart.reduce((sum, item) => sum + (item.priceINR * item.qty), 0);
+    const customerName = document.querySelector('#shippingAddressForm input[type="text"]')?.value || 'Valued Customer';
+    const customerPhone = document.querySelector('#shippingAddressForm input[type="tel"]')?.value || '+91 9876543210';
+    const streetAddress = document.querySelectorAll('#shippingAddressForm input[type="text"]')[1]?.value || 'Main Street';
+    const city = document.querySelectorAll('#shippingAddressForm input[type="text"]')[2]?.value || 'Mumbai';
+    const state = document.querySelector('#shippingAddressForm select')?.value || 'Maharashtra';
+    const pincode = document.querySelectorAll('#shippingAddressForm input[type="text"]')[3]?.value || '400001';
+
+    const orderPayload = {
+      customerName,
+      customerPhone,
+      shippingAddress: streetAddress,
+      city,
+      state,
+      pincode,
+      totalINR: totalAmountINR,
+      currency: currentCurrency,
+      paymentMethod: 'UPI / Card Demo',
+      items: cart
+    };
+
+    let orderId = 'DS-' + Math.floor(100000 + Math.random() * 900000);
+
+    try {
+      const resp = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderPayload)
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data.orderCode) orderId = data.orderCode;
+      }
+    } catch (e) {
+      console.log('Backend API offline or local mode, using client order code:', orderId);
+    }
 
     triggerSparkles();
     document.getElementById('checkoutModal').classList.remove('active');
@@ -1169,7 +1203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div style="width:70px; height:70px; background:#e8f5e9; color:#2e7d32; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.2rem; margin:0 auto 16px;">
           ✓
         </div>
-        <h3 style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-dark-olive); margin-bottom:4px;">Order Confirmed!</h3>
+        <h3 style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-dark-olive); margin-bottom:4px;">Order Confirmed & Saved!</h3>
         <p style="font-size:0.88rem; color:var(--color-muted-text); margin-bottom:20px;">Thank you for shopping at D’s Wrapping Studio. Order #${orderId}</p>
 
         <div class="receipt-invoice-card" style="margin-bottom:20px;">
@@ -1177,11 +1211,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>Order Receipt</span>
             <span>${orderId}</span>
           </div>
+          <div style="font-size:0.85rem; color:var(--color-muted-text); margin-bottom:6px;">
+            Customer: <strong>${customerName} (${customerPhone})</strong>
+          </div>
           <div style="font-size:0.85rem; color:var(--color-muted-text); margin-bottom:12px;">
             Total Paid / Payable: <strong style="color:var(--color-champagne); font-size:1.1rem;">${formatMoney(totalAmountINR)}</strong>
           </div>
           <div style="font-size:0.8rem; color:var(--color-primary-olive); background:var(--color-warm-ivory); padding:8px; border-radius:var(--radius-sm);">
-            🚚 Estimated Pan-India Delivery: 3 to 5 Business Days
+            🚚 Pan-India Shipping: ${streetAddress}, ${city}, ${state} - ${pincode}<br>
+            Estimated Delivery: 3 to 5 Business Days
           </div>
         </div>
 

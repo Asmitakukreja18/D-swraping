@@ -1,0 +1,27 @@
+{
+  "name": "ds-wrapping-studio-backend",
+  "version": "1.0.0",
+  "description": "Express Node.js REST API Backend for D's Wrapping Studio Luxury Hamper E-Commerce Site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "gifting",
+    "hampers",
+    "ecommerce",
+    "express",
+    "sqlite"
+  ],
+  "author": "D's Wrapping Studio",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  }
+}
