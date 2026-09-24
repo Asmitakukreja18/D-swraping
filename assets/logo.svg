@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" width="320" height="100">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B9A16A" />
+      <stop offset="50%" stop-color="#E8D5B0" />
+      <stop offset="100%" stop-color="#A58B54" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Botanical Wreath & Circle Emblem -->
+  <g transform="translate(10, 5)">
+    <!-- Double Thin Gold/Olive Circle -->
+    <circle cx="42" cy="42" r="38" fill="none" stroke="#31452F" stroke-width="1.5" />
+    <circle cx="42" cy="42" r="34" fill="none" stroke="#B9A16A" stroke-width="0.8" stroke-dasharray="3,2" />
+    
+    <!-- Botanical Leaf Sprays -->
+    <path d="M 12,42 C 10,25 22,12 42,12 C 32,20 28,32 30,42 Z" fill="#667455" opacity="0.4" />
+    <path d="M 72,42 C 74,25 62,12 42,12 C 52,20 56,32 54,42 Z" fill="#667455" opacity="0.4" />
+
+    <!-- Top Ribbon Bow Knot Accent -->
+    <path d="M 42,8 C 38,2 30,4 34,12 C 38,15 42,11 42,8 Z" fill="#B9A16A" />
+    <path d="M 42,8 C 46,2 54,4 50,12 C 46,15 42,11 42,8 Z" fill="#B9A16A" />
+    <circle cx="42" cy="9" r="2.5" fill="#31452F" />
+
+    <!-- Monogram D’ -->
+    <text x="42" y="52" font-family="'Cormorant Garamond', serif" font-size="34" font-weight="600" fill="#31452F" text-anchor="middle">D’</text>
+  </g>
+
+  <!-- Typography Block -->
+  <g transform="translate(100, 32)">
+    <!-- Brand Name -->
+    <text x="0" y="22" font-family="'Cormorant Garamond', 'Playfair Display', serif" font-size="24" font-weight="700" fill="#31452F" letter-spacing="0.02em">
+      D’s Wrapping Studio
+    </text>
+
+    <!-- Golden Divider Line -->
+    <line x1="0" y1="32" x2="195" y2="32" stroke="url(#goldGrad)" stroke-width="1" />
+    <circle cx="97.5" cy="32" r="2" fill="#B9A16A" />
+
+    <!-- Tagline -->
+    <text x="0" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="700" fill="#A58B54" letter-spacing="0.32em">
+      WRAPPED WITH LOVE
+    </text>
+  </g>
+</svg>

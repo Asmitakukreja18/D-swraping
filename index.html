@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D’s Wrapping Studio | Luxury Custom Hampers & Gifting</title>
+  <meta name="description" content="D’s Wrapping Studio creates customized luxury hampers, personalized gifts, bouquets and beautifully curated gifting experiences for every special occasion. Wrapped With Love.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span>Thoughtfully Curated. Beautifully Wrapped. Made With Love. ♡</span>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Open Navigation Menu">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="D's Wrapping Studio Logo" class="brand-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display:none; align-items:center; gap:10px;">
+          <div class="logo-crest">D’</div>
+          <div>
+            <span class="brand-name">D’s Wrapping Studio</span>
+            <span class="brand-tagline">WRAPPED WITH LOVE</span>
+          </div>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="collections.html" class="nav-link">Collections</a>
+        <a href="custom-hampers.html" class="nav-link">Custom Hampers</a>
+        <a href="occasions.html" class="nav-link">Occasions</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/the.dwrappingstudio/" target="_blank" rel="noopener" class="action-btn" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="custom-hampers.html" class="btn btn-sm btn-gold">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Build Hamper
+        </a>
+        <a href="https://wa.me/919876543210?text=Hi%20D's%20Wrapping%20Studio!%20I'd%20like%20to%20enquire%20about%20gifting." target="_blank" rel="noopener" class="btn btn-sm btn-primary-olive">
+          <i class="fa-brands fa-whatsapp"></i> Enquire
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <button class="mobile-close-btn" id="mobileCloseBtn">&times;</button>
+    <div style="margin-bottom:30px; text-align:center;">
+      <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">D’s Wrapping Studio</span>
+      <span style="display:block; fontSize:0.7rem; letter-spacing:0.3em; color:var(--color-warm-beige);">WRAPPED WITH LOVE</span>
+    </div>
+    <nav class="mobile-nav-links">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="about.html" class="mobile-link">About Us</a>
+      <a href="collections.html" class="mobile-link">Collections</a>
+      <a href="custom-hampers.html" class="mobile-link">Custom Hampers</a>
+      <a href="occasions.html" class="mobile-link">Occasions</a>
+      <a href="gallery.html" class="mobile-link">Gallery</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="section" style="min-height:calc(100vh - 100px); padding:80px 0 60px; background:radial-gradient(circle at 10% 20%, rgba(135, 145, 119, 0.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(185, 161, 106, 0.15) 0%, transparent 45%), var(--color-warm-ivory); display:flex; align-items:center;">
+      <div class="container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:60px; align-items:center;">
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:8px; background-color:var(--color-soft-cream); border:1px solid var(--color-border); padding:6px 16px; border-radius:var(--radius-full); fontSize:0.72rem; fontWeight:700; letter-spacing:0.25em; color:var(--color-primary-olive); marginBottom:24px;">
+            <span>✦ D’S WRAPPING STUDIO</span>
+          </div>
+
+          <h1 style="font-family:var(--font-serif); fontSize:clamp(3rem, 5vw, 4.8rem); fontWeight:500; lineHeight:1.08; color:var(--color-dark-olive); marginBottom:20px;">
+            Gifts That Feel <br>
+            <span class="font-script gold-gradient-text">Like You.</span>
+          </h1>
+
+          <p style="fontSize:1.15rem; color:var(--color-muted-text); maxWidth:520px; lineHeight:1.7; marginBottom:35px;">
+            Thoughtfully curated hampers, personalized gifts and beautiful little details created for the moments that matter.
+          </p>
+
+          <div style="display:flex; gap:20px; flexWrap:wrap; marginBottom:40px;">
+            <a href="collections.html" class="btn btn-primary-olive btn-large">
+              <span>EXPLORE COLLECTIONS</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="custom-hampers.html" class="btn btn-gold btn-large">
+              <i class="fa-solid fa-gift"></i>
+              <span>CREATE YOUR HAMPER</span>
+            </a>
+          </div>
+
+          <div style="display:flex; gap:20px; fontSize:0.8rem; fontWeight:600; color:var(--color-primary-olive);">
+            <span>✦ Bespoke Styling</span>
+            <span>✦ Luxury Wrap</span>
+            <span>✦ Pan-India Shipping</span>
+          </div>
+        </div>
+
+        <div style="position:relative; display:flex; justifyContent:center;">
+          <div style="width:100%; maxWidth:460px; aspectRatio:0.82; borderRadius:230px 230px 30px 30px; border:8px solid var(--color-soft-cream); boxShadow:var(--shadow-lg); overflow:hidden; position:relative;">
+            <img src="assets/gallery-3.jpeg" alt="Luxury Hamper" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:20px; left:20px; right:20px; background:rgba(38, 55, 36, 0.85); backdrop-filter:blur(10px); color:var(--color-soft-cream); padding:12px 20px; borderRadius:var(--radius-md); display:flex; justifyContent:space-between; fontSize:0.75rem; letter-spacing:0.15em; border:1px solid var(--color-champagne);">
+              <span>01 · THOUGHTFULLY CURATED</span>
+              <span class="font-script gold-accent">wrapped with love ♡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND STATEMENT -->
+    <section class="section" style="background-color:var(--color-soft-cream);">
+      <div class="container text-center" style="maxWidth:850px;">
+        <div class="section-eyebrow justify-center">
+          <i class="fa-solid fa-ribbon"></i>
+          <span>MORE THAN A GIFT</span>
+        </div>
+        <h2 class="section-title">
+          Every Hamper Begins With A <span class="font-script gold-gradient-text">Thought.</span>
+        </h2>
+        <p style="font-family:var(--font-serif); fontSize:1.6rem; color:var(--color-primary-olive); font-style:italic; marginBottom:20px;">
+          “At D’s Wrapping Studio, every hamper begins with a thought, a feeling and a reason to celebrate.”
+        </p>
+        <p style="fontSize:1.05rem; color:var(--color-muted-text); lineHeight:1.8; marginBottom:24px;">
+          From carefully chosen details to the final ribbon, we create gifting experiences that feel personal, beautiful and unforgettable.
+        </p>
+        <span class="font-script" style="fontSize:1.8rem; color:var(--color-primary-olive);">
+          made especially for them ♡
+        </span>
+      </div>
+    </section>
+
+    <!-- SHOP BY OCCASION -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-eyebrow justify-center">
+            <i class="fa-solid fa-calendar-heart"></i>
+            <span>WHATEVER THE REASON</span>
+          </div>
+          <h2 class="section-title">
+            Celebrate Every <span class="font-script gold-gradient-text">Moment</span>
+          </h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:25px; marginTop:40px;">
+          <div style="background-color:var(--color-soft-cream); borderRadius:var(--radius-md); overflow:hidden; border:1px solid var(--color-border); boxShadow:var(--shadow-sm);">
+            <img src="assets/gallery-1.jpeg" alt="Birthday" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:24px;">
+              <h3 style="font-family:var(--font-serif); fontSize:1.4rem; color:var(--color-dark-olive); marginBottom:8px;">Birthday</h3>
+              <p style="fontSize:0.88rem; color:var(--color-muted-text); marginBottom:16px;">Surprise them with curated treats, personalized keepsakes and joy.</p>
+              <a href="collections.html" style="fontWeight:700; color:var(--color-primary-olive);">Explore →</a>
+            </div>
+          </div>
+
+          <div style="background-color:var(--color-soft-cream); borderRadius:var(--radius-md); overflow:hidden; border:1px solid var(--color-border); boxShadow:var(--shadow-sm);">
+            <img src="assets/gallery-9.jpeg" alt="Anniversary" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:24px;">
+              <h3 style="font-family:var(--font-serif); fontSize:1.4rem; color:var(--color-dark-olive); marginBottom:8px;">Anniversary</h3>
+              <p style="fontSize:0.88rem; color:var(--color-muted-text); marginBottom:16px;">Express everlasting love with rose arrangements and fine chocolates.</p>
+              <a href="collections.html" style="fontWeight:700; color:var(--color-primary-olive);">Explore →</a>
+            </div>
+          </div>
+
+          <div style="background-color:var(--color-soft-cream); borderRadius:var(--radius-md); overflow:hidden; border:1px solid var(--color-border); boxShadow:var(--shadow-sm);">
+            <img src="assets/gallery-6.jpeg" alt="Wedding" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:24px;">
+              <h3 style="font-family:var(--font-serif); fontSize:1.4rem; color:var(--color-dark-olive); marginBottom:8px;">Wedding</h3>
+              <p style="fontSize:0.88rem; color:var(--color-muted-text); marginBottom:16px;">Graceful bride & groom hampers and royal return favours.</p>
+              <a href="collections.html" style="fontWeight:700; color:var(--color-primary-olive);">Explore →</a>
+            </div>
+          </div>
+
+          <div style="background-color:var(--color-soft-cream); borderRadius:var(--radius-md); overflow:hidden; border:1px solid var(--color-border); boxShadow:var(--shadow-sm);">
+            <img src="assets/gallery-2.jpeg" alt="Raksha Bandhan" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:24px;">
+              <h3 style="font-family:var(--font-serif); fontSize:1.4rem; color:var(--color-dark-olive); marginBottom:8px;">Raksha Bandhan</h3>
+              <p style="fontSize:0.88rem; color:var(--color-muted-text); marginBottom:16px;">Artisanal Rakhi hampers with sweets and personalized gifts.</p>
+              <a href="collections.html" style="fontWeight:700; color:var(--color-primary-olive);">Explore →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOM HAMPER FEATURE -->
+    <section class="section" style="background-color:var(--color-primary-olive); color:var(--color-soft-cream);">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:60px; align-items:center;">
+          <div>
+            <div class="section-eyebrow eyebrow-light">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>BESPOKE CREATION STUDIO</span>
+            </div>
+            <h2 class="section-title title-light">
+              Your Idea. <br>
+              <span class="font-script gold-accent">Our Craft.</span>
+            </h2>
+            <p style="fontSize:1.1rem; color:var(--color-warm-beige); lineHeight:1.7; marginBottom:35px;">
+              Have something special in mind? Tell us the occasion, the person and the little things they love. We’ll turn your idea into a beautifully curated hamper.
+            </p>
+            <a href="custom-hampers.html" class="btn btn-gold btn-large">
+              <span>CREATE MY HAMPER →</span>
+            </a>
+          </div>
+
+          <div style="position:relative; height:400px;">
+            <img src="assets/gallery-2.jpeg" alt="Custom Hamper" style="width:80%; height:320px; object-fit:cover; borderRadius:var(--radius-md); border:2px solid var(--color-champagne); boxShadow:var(--shadow-lg);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section" style="background-color:var(--color-dark-olive); color:var(--color-soft-cream);">
+      <div class="container text-center" style="maxWidth:750px;">
+        <h2 style="font-family:var(--font-serif); fontSize:clamp(2.5rem, 4.5vw, 3.8rem); margin-bottom:16px;">
+          Have Something Special In Mind?
+        </h2>
+        <p style="fontSize:1.15rem; color:var(--color-warm-beige); marginBottom:35px;">
+          Let’s create something beautiful together.
+        </p>
+        <div style="display:flex; justifyContent:center; gap:20px; flexWrap:wrap;">
+          <a href="https://wa.me/919876543210?text=Hi%20D's%20Wrapping%20Studio!%20I%20have%20an%20occasion%20coming%20up." target="_blank" rel="noopener" class="btn btn-gold btn-large">
+            <i class="fa-brands fa-whatsapp"></i> WHATSAPP US
+          </a>
+          <a href="contact.html" class="btn btn-outline-light btn-large">
+            <i class="fa-regular fa-envelope"></i> SEND AN ENQUIRY
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <div class="brand-name">D’s Wrapping Studio</div>
+          <div style="fontSize:0.65rem; letter-spacing:0.35em; color:var(--color-champagne); font-weight:700;">WRAPPED WITH LOVE</div>
+          <p class="footer-desc">Boutique gifting studio specializing in luxury hampers, personalized keepsakes and custom gift styling.</p>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="custom-hampers.html">Custom Hampers</a></li>
+            <li><a href="occasions.html">Occasions</a></li>
+            <li><a href="gallery.html">Studio Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Occasions</h4>
+          <ul>
+            <li><a href="occasions.html">Birthday Gifts</a></li>
+            <li><a href="occasions.html">Anniversary Boxes</a></li>
+            <li><a href="occasions.html">Wedding Favours</a></li>
+            <li><a href="occasions.html">Raksha Bandhan</a></li>
+            <li><a href="occasions.html">Festive Hampers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 D’s Wrapping Studio. All Rights Reserved.</div>
+        <div class="font-script gold-gradient-text" style="fontSize:1.5rem;">“Wrapped With Love ♡”</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <div class="floating-whatsapp-wrap">
+    <div class="whatsapp-tooltip">Chat with D’s Studio ♡</div>
+    <a href="https://wa.me/919876543210?text=Hi%20D's%20Wrapping%20Studio!" target="_blank" rel="noopener" class="floating-wa-btn">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="online-pulse"></span>
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
