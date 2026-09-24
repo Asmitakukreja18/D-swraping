@@ -662,6 +662,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function showToast(msg) {
+    let toast = document.getElementById('toastNotification');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toastNotification';
+      toast.style.cssText = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:var(--color-primary-olive); color:var(--color-champagne); padding:12px 24px; border-radius:var(--radius-full); border:1px solid var(--color-champagne); font-weight:700; font-size:0.9rem; box-shadow:var(--shadow-lg); z-index:999999; transition:all 0.3s ease; opacity:0; pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-right:8px;"></i> ${msg}`;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(10px)';
+    }, 2800);
+  }
+
   // Global Add to Cart Function
   window.addItemToCart = function(name, priceINR, img, customNote = '') {
     const existingIndex = cart.findIndex(item => item.name === name && item.customNote === customNote);
@@ -672,6 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     saveCart();
     updateCartUI();
+    showToast(`✓ Added to Cart! (${name})`);
     openCart();
     triggerSparkles();
   };
@@ -684,6 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const badge = document.getElementById('cartBadge');
     const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
     if (badge) badge.textContent = totalQty;
+    document.querySelectorAll('.cart-badge').forEach(el => el.textContent = totalQty);
 
     if (!cartItemsList) return;
 

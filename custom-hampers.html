@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Hampers | D’s Wrapping Studio</title>
+  <title>Custom Hampers Studio | D’s Wrapping Studio</title>
   <meta name="description" content="Your Idea. Our Craft. - You name it, we craft it at D’s Wrapping Studio.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,12 +40,9 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="https://www.instagram.com/the.dwrappingstudio/" target="_blank" rel="noopener" class="action-btn" title="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="custom-hampers.html" class="btn btn-sm btn-gold">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Build Hamper
-        </a>
+        <button id="cartBtn" class="btn btn-sm btn-gold" style="position:relative; display:inline-flex; align-items:center; gap:6px;">
+          <i class="fa-solid fa-cart-shopping"></i> Cart (<span id="cartBadge">0</span>)
+        </button>
         <a href="https://api.whatsapp.com/send?text=Hi%20D's%20Wrapping%20Studio!%20I'd%20like%20to%20enquire%20about%20gifting." target="_blank" rel="noopener" class="btn btn-sm btn-primary-olive">
           <i class="fa-brands fa-whatsapp"></i> Enquire
         </a>
@@ -60,13 +57,13 @@
           <i class="fa-solid fa-wand-magic-sparkles"></i> BESPOKE CREATION STUDIO
         </span>
         <h1 class="page-hero-title">Your Idea. Our Craft.</h1>
-        <p class="page-hero-subtitle font-script" style="fontSize:1.8rem; color:var(--color-champagne);">
+        <p class="page-hero-subtitle font-script" style="font-size:1.8rem; color:var(--color-champagne);">
           “You name it, we craft it.”
         </p>
       </div>
     </section>
 
-    <!-- 6-STEP PROCESS -->
+    <!-- SEAMLESS PROCESS -->
     <section class="section">
       <div class="container text-center">
         <div class="section-eyebrow justify-center">
@@ -74,41 +71,35 @@
         </div>
         <h2 class="section-title">How It <span class="font-script gold-gradient-text">Works</span></h2>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:20px; marginTop:40px;">
-          <div style="background-color:var(--color-soft-cream); padding:24px 16px; borderRadius:var(--radius-md); border:1px solid var(--color-border);">
-            <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">01</span>
-            <h4 style="font-family:var(--font-serif); fontSize:1.15rem; color:var(--color-dark-olive); margin:8px 0 4px;">Share Occasion</h4>
-            <p style="fontSize:0.82rem; color:var(--color-muted-text);">Tell us what you are celebrating.</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:16px; margin-top:30px;">
+          <div style="background-color:var(--color-soft-cream); padding:20px 12px; border-radius:var(--radius-md); border:1px solid var(--color-border);">
+            <span style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-champagne);">01</span>
+            <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--color-dark-olive); margin:6px 0 2px;">1. Choose Base</h4>
+            <p style="font-size:0.8rem; color:var(--color-muted-text);">Select luxury basket or trunk.</p>
           </div>
 
-          <div style="background-color:var(--color-soft-cream); padding:24px 16px; borderRadius:var(--radius-md); border:1px solid var(--color-border);">
-            <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">02</span>
-            <h4 style="font-family:var(--font-serif); fontSize:1.15rem; color:var(--color-dark-olive); margin:8px 0 4px;">Tell Preferences</h4>
-            <p style="fontSize:0.82rem; color:var(--color-muted-text);">Chocolates, roses, candles or skincare.</p>
+          <div style="background-color:var(--color-soft-cream); padding:20px 12px; border-radius:var(--radius-md); border:1px solid var(--color-border);">
+            <span style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-champagne);">02</span>
+            <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--color-dark-olive); margin:6px 0 2px;">2. Add Products</h4>
+            <p style="font-size:0.8rem; color:var(--color-muted-text);">Lipsticks, chocolates, candles.</p>
           </div>
 
-          <div style="background-color:var(--color-soft-cream); padding:24px 16px; borderRadius:var(--radius-md); border:1px solid var(--color-border);">
-            <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">03</span>
-            <h4 style="font-family:var(--font-serif); fontSize:1.15rem; color:var(--color-dark-olive); margin:8px 0 4px;">Choose Budget</h4>
-            <p style="fontSize:0.82rem; color:var(--color-muted-text);">Tailored to your budget range.</p>
+          <div style="background-color:var(--color-soft-cream); padding:20px 12px; border-radius:var(--radius-md); border:1px solid var(--color-border);">
+            <span style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-champagne);">03</span>
+            <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--color-dark-olive); margin:6px 0 2px;">3. Special Touches</h4>
+            <p style="font-size:0.8rem; color:var(--color-muted-text);">Roses, fairy lights, wax seal.</p>
           </div>
 
-          <div style="background-color:var(--color-soft-cream); padding:24px 16px; borderRadius:var(--radius-md); border:1px solid var(--color-border);">
-            <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">04</span>
-            <h4 style="font-family:var(--font-serif); fontSize:1.15rem; color:var(--color-dark-olive); margin:8px 0 4px;">We Curate</h4>
-            <p style="fontSize:0.82rem; color:var(--color-muted-text);">Handcrafting ribbons & styling.</p>
+          <div style="background-color:var(--color-soft-cream); padding:20px 12px; border-radius:var(--radius-md); border:1px solid var(--color-border);">
+            <span style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-champagne);">04</span>
+            <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--color-dark-olive); margin:6px 0 2px;">4. Live Preview</h4>
+            <p style="font-size:0.8rem; color:var(--color-muted-text);">See live total & hamper look.</p>
           </div>
 
-          <div style="background-color:var(--color-soft-cream); padding:24px 16px; borderRadius:var(--radius-md); border:1px solid var(--color-border);">
-            <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">05</span>
-            <h4 style="font-family:var(--font-serif); fontSize:1.15rem; color:var(--color-dark-olive); margin:8px 0 4px;">You Approve</h4>
-            <p style="fontSize:0.82rem; color:var(--color-muted-text);">Preview photos before final wrap.</p>
-          </div>
-
-          <div style="background-color:var(--color-soft-cream); padding:24px 16px; borderRadius:var(--radius-md); border:1px solid var(--color-border);">
-            <span style="font-family:var(--font-serif); fontSize:2rem; color:var(--color-champagne);">06</span>
-            <h4 style="font-family:var(--font-serif); fontSize:1.15rem; color:var(--color-dark-olive); margin:8px 0 4px;">We Deliver</h4>
-            <p style="fontSize:0.82rem; color:var(--color-muted-text);">Safe doorstep express delivery.</p>
+          <div style="background-color:var(--color-soft-cream); padding:20px 12px; border-radius:var(--radius-md); border:1px solid var(--color-border);">
+            <span style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-champagne);">05</span>
+            <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--color-dark-olive); margin:6px 0 2px;">5. Add to Cart</h4>
+            <p style="font-size:0.8rem; color:var(--color-muted-text);">One-click express checkout.</p>
           </div>
         </div>
       </div>
@@ -117,74 +108,203 @@
     <!-- INTERACTIVE BESPOKE HAMPER BUILDER STUDIO -->
     <section class="section" id="hamperBuilderContainer" style="background-color:var(--color-soft-cream);">
       <div class="container">
-        <div class="section-header text-center" style="margin-bottom:40px;">
+        <div class="section-header text-center" style="margin-bottom:30px;">
           <div class="section-eyebrow justify-center">
             <i class="fa-solid fa-gift"></i> INTERACTIVE HAMPER STUDIO
           </div>
           <h2 class="section-title">Build Your <span class="font-script gold-gradient-text">Custom Hamper</span></h2>
-          <p class="section-subtitle" style="margin:0 auto;">Select your preferred packaging base, add luxury makeup, treats & florals, and watch your hamper come alive in real-time preview!</p>
+          <p class="section-subtitle" style="margin:0 auto;">Select your preferred packaging base, add luxury cosmetics & gourmet treats, and watch your hamper calculate in real-time!</p>
         </div>
 
         <div class="hamper-builder-grid">
           <!-- BUILDER STEPS LEFT COLUMN -->
           <div>
             <!-- STEP 1: CHOOSE BASE PACKAGING -->
-            <div class="builder-step-section">
-              <div class="builder-step-header">
-                <div class="step-num">1</div>
+            <div class="builder-step-section" style="background:#fff; padding:24px; border-radius:var(--radius-lg); border:1px solid var(--color-border); margin-bottom:24px; box-shadow:var(--shadow-sm);">
+              <div class="builder-step-header" style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+                <div class="step-num" style="width:36px; height:36px; border-radius:50%; background:var(--color-primary-olive); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">1</div>
                 <div>
-                  <h3 class="step-title">Choose Packaging Base</h3>
-                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Click pointer lens icon to zoom out & inspect materials</div>
+                  <h3 class="step-title" style="font-family:var(--font-serif); font-size:1.3rem; color:var(--color-dark-olive); margin:0;">CHOOSE YOUR PACKAGING BASE</h3>
+                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Click any base to select it for your custom hamper box</div>
                 </div>
               </div>
+
               <div id="baseOptionsGrid" class="base-options-grid">
-                <!-- JS will populate base options -->
+                <!-- Base 1 -->
+                <div class="base-card selected" onclick="selectBase('wooden', 'Handcrafted Wooden Basket', 599, 'assets/base-wooden.jpg')">
+                  <span class="base-selected-badge">✓ SELECTED</span>
+                  <img src="assets/base-wooden.jpg" alt="Handcrafted Wooden Basket">
+                  <div class="base-name">Handcrafted Wooden Basket</div>
+                  <div class="base-price">₹599</div>
+                  <button class="btn btn-sm btn-gold select-btn-ui" style="margin-top:8px; width:100%;">SELECTED ✓</button>
+                </div>
+
+                <!-- Base 2 -->
+                <div class="base-card" onclick="selectBase('acrylic', 'Transparent Acrylic Crate', 699, 'assets/base-acrylic.jpg')">
+                  <img src="assets/base-acrylic.jpg" alt="Transparent Acrylic Crate">
+                  <div class="base-name">Transparent Acrylic Crate</div>
+                  <div class="base-price">₹699</div>
+                  <button class="btn btn-sm btn-outline select-btn-ui" style="margin-top:8px; width:100%;">SELECT BASE</button>
+                </div>
+
+                <!-- Base 3 -->
+                <div class="base-card" onclick="selectBase('net', 'Pastel Net & Tulle Wrap', 349, 'assets/base-net.jpg')">
+                  <img src="assets/base-net.jpg" alt="Pastel Net & Tulle Wrap">
+                  <div class="base-name">Pastel Net & Tulle Wrap</div>
+                  <div class="base-price">₹349</div>
+                  <button class="btn btn-sm btn-outline select-btn-ui" style="margin-top:8px; width:100%;">SELECT BASE</button>
+                </div>
+
+                <!-- Base 4 -->
+                <div class="base-card" onclick="selectBase('velvet', 'Royal Velvet Treasure Trunk', 899, 'assets/base-velvet.jpg')">
+                  <img src="assets/base-velvet.jpg" alt="Royal Velvet Treasure Trunk">
+                  <div class="base-name">Royal Velvet Treasure Trunk</div>
+                  <div class="base-price">₹899</div>
+                  <button class="btn btn-sm btn-outline select-btn-ui" style="margin-top:8px; width:100%;">SELECT BASE</button>
+                </div>
+
+                <!-- Base 5 -->
+                <div class="base-card" onclick="selectBase('satin', 'Signature Satin Box', 449, 'assets/gallery-2.jpeg')">
+                  <img src="assets/gallery-2.jpeg" alt="Signature Satin Box">
+                  <div class="base-name">Signature Satin Box</div>
+                  <div class="base-price">₹449</div>
+                  <button class="btn btn-sm btn-outline select-btn-ui" style="margin-top:8px; width:100%;">SELECT BASE</button>
+                </div>
               </div>
             </div>
 
             <!-- STEP 2: CHOOSE PRODUCTS (MAKEUP, CHOCOLATES & SELF-CARE) -->
-            <div class="builder-step-section">
-              <div class="builder-step-header">
-                <div class="step-num">2</div>
+            <div class="builder-step-section" style="background:#fff; padding:24px; border-radius:var(--radius-lg); border:1px solid var(--color-border); margin-bottom:24px; box-shadow:var(--shadow-sm);">
+              <div class="builder-step-header" style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+                <div class="step-num" style="width:36px; height:36px; border-radius:50%; background:var(--color-primary-olive); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">2</div>
                 <div>
-                  <h3 class="step-title">Select Products & Cosmetics</h3>
-                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Luxury lipsticks, serums, eyeshadow palettes & treats</div>
+                  <h3 class="step-title" style="font-family:var(--font-serif); font-size:1.3rem; color:var(--color-dark-olive); margin:0;">SELECT PRODUCTS FOR YOUR HAMPER</h3>
+                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Add luxury makeup, skincare, chocolates & candles using + / - buttons</div>
                 </div>
               </div>
+
               <div id="productsPickerGrid" class="products-picker-grid">
-                <!-- JS will populate products -->
+                <!-- Product 1 -->
+                <div class="product-picker-card">
+                  <img src="assets/makeup-set.jpg" alt="Matte Velvet Lipstick" class="product-picker-img">
+                  <div>
+                    <div style="font-size:0.7rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700;">Makeup & Beauty</div>
+                    <div class="base-name">Matte Velvet Lipstick</div>
+                    <div class="base-price">₹699</div>
+                  </div>
+                  <div class="picker-qty-controls">
+                    <button class="qty-btn" onclick="changeHamperItemQty('lipstick', -1)">-</button>
+                    <span id="hamper_item_qty_lipstick" style="font-weight:700;">0</span>
+                    <button class="qty-btn" onclick="changeHamperItemQty('lipstick', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-picker-card">
+                  <img src="assets/makeup-set.jpg" alt="Rosewater Glow Serum" class="product-picker-img">
+                  <div>
+                    <div style="font-size:0.7rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700;">Skincare</div>
+                    <div class="base-name">Rosewater Glow Serum</div>
+                    <div class="base-price">₹899</div>
+                  </div>
+                  <div class="picker-qty-controls">
+                    <button class="qty-btn" onclick="changeHamperItemQty('serum', -1)">-</button>
+                    <span id="hamper_item_qty_serum" style="font-weight:700;">0</span>
+                    <button class="qty-btn" onclick="changeHamperItemQty('serum', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-picker-card">
+                  <img src="assets/makeup-set.jpg" alt="Celestial Eye Palette" class="product-picker-img">
+                  <div>
+                    <div style="font-size:0.7rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700;">Makeup & Beauty</div>
+                    <div class="base-name">Celestial Eye Palette</div>
+                    <div class="base-price">₹1,199</div>
+                  </div>
+                  <div class="picker-qty-controls">
+                    <button class="qty-btn" onclick="changeHamperItemQty('eyeshadow', -1)">-</button>
+                    <span id="hamper_item_qty_eyeshadow" style="font-weight:700;">0</span>
+                    <button class="qty-btn" onclick="changeHamperItemQty('eyeshadow', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-picker-card">
+                  <img src="assets/gallery-6.jpeg" alt="Artisanal Chocolate Truffles" class="product-picker-img">
+                  <div>
+                    <div style="font-size:0.7rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700;">Gourmet Treats</div>
+                    <div class="base-name">Artisanal Chocolate Truffles</div>
+                    <div class="base-price">₹499</div>
+                  </div>
+                  <div class="picker-qty-controls">
+                    <button class="qty-btn" onclick="changeHamperItemQty('truffles', -1)">-</button>
+                    <span id="hamper_item_qty_truffles" style="font-weight:700;">0</span>
+                    <button class="qty-btn" onclick="changeHamperItemQty('truffles', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-picker-card">
+                  <img src="assets/gallery-10.jpeg" alt="Gourmet Butter Cookies" class="product-picker-img">
+                  <div>
+                    <div style="font-size:0.7rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700;">Gourmet Treats</div>
+                    <div class="base-name">Gourmet Butter Cookies</div>
+                    <div class="base-price">₹399</div>
+                  </div>
+                  <div class="picker-qty-controls">
+                    <button class="qty-btn" onclick="changeHamperItemQty('cookies', -1)">-</button>
+                    <span id="hamper_item_qty_cookies" style="font-weight:700;">0</span>
+                    <button class="qty-btn" onclick="changeHamperItemQty('cookies', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-picker-card">
+                  <img src="assets/gallery-4.jpeg" alt="Scented Botanical Candle" class="product-picker-img">
+                  <div>
+                    <div style="font-size:0.7rem; color:var(--color-primary-olive); text-transform:uppercase; font-weight:700;">Self-Care</div>
+                    <div class="base-name">Scented Botanical Candle</div>
+                    <div class="base-price">₹599</div>
+                  </div>
+                  <div class="picker-qty-controls">
+                    <button class="qty-btn" onclick="changeHamperItemQty('candle', -1)">-</button>
+                    <span id="hamper_item_qty_candle" style="font-weight:700;">0</span>
+                    <button class="qty-btn" onclick="changeHamperItemQty('candle', 1)">+</button>
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- STEP 3: SPECIAL REQUESTS & FLORAL TOUCHES -->
-            <div class="builder-step-section">
-              <div class="builder-step-header">
-                <div class="step-num">3</div>
+            <div class="builder-step-section" style="background:#fff; padding:24px; border-radius:var(--radius-lg); border:1px solid var(--color-border); margin-bottom:24px; box-shadow:var(--shadow-sm);">
+              <div class="builder-step-header" style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+                <div class="step-num" style="width:36px; height:36px; border-radius:50%; background:var(--color-primary-olive); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">3</div>
                 <div>
-                  <h3 class="step-title">Florals & Luxury Touches</h3>
-                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Add fresh flowers, fairy lights & calligraphy card</div>
+                  <h3 class="step-title" style="font-family:var(--font-serif); font-size:1.3rem; color:var(--color-dark-olive); margin:0;">ADD A SPECIAL TOUCH</h3>
+                  <div style="font-size:0.82rem; color:var(--color-muted-text);">Add fresh roses, LED lights & handwritten calligraphy card</div>
                 </div>
               </div>
 
               <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:20px;">
-                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:12px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
-                  <input type="checkbox" onchange="toggleAddon('freshRoses')">
+                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:14px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
+                  <input type="checkbox" style="width:18px; height:18px; accent-color:var(--color-primary-olive);" onchange="toggleAddon('freshRoses')">
                   <div>
                     <div style="font-weight:700; font-size:0.9rem; color:var(--color-dark-olive);">🌹 Fresh Red Roses</div>
                     <div style="font-size:0.78rem; color:var(--color-champagne); font-weight:700;">+₹299 / $3.50</div>
                   </div>
                 </label>
 
-                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:12px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
-                  <input type="checkbox" onchange="toggleAddon('fairyLights')">
+                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:14px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
+                  <input type="checkbox" style="width:18px; height:18px; accent-color:var(--color-primary-olive);" onchange="toggleAddon('fairyLights')">
                   <div>
                     <div style="font-weight:700; font-size:0.9rem; color:var(--color-dark-olive);">✨ LED Fairy Lights</div>
                     <div style="font-size:0.78rem; color:var(--color-champagne); font-weight:700;">+₹149 / $1.80</div>
                   </div>
                 </label>
 
-                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:12px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
-                  <input type="checkbox" onchange="toggleAddon('waxSealCard')">
+                <label style="display:flex; align-items:center; gap:10px; background:var(--color-soft-cream); padding:14px; border-radius:var(--radius-md); border:1px solid var(--color-border); cursor:pointer;">
+                  <input type="checkbox" style="width:18px; height:18px; accent-color:var(--color-primary-olive);" onchange="toggleAddon('waxSealCard')">
                   <div>
                     <div style="font-weight:700; font-size:0.9rem; color:var(--color-dark-olive);">💌 Wax Seal Note</div>
                     <div style="font-size:0.78rem; color:var(--color-champagne); font-weight:700;">+₹99 / $1.20</div>
@@ -193,7 +313,7 @@
               </div>
 
               <div>
-                <label style="display:block; font-size:0.82rem; font-weight:700; color:var(--color-dark-olive); margin-bottom:6px;">Custom Calligraphy Message Card</label>
+                <label style="display:block; font-size:0.85rem; font-weight:700; color:var(--color-dark-olive); margin-bottom:6px;">Custom Calligraphy Message Card</label>
                 <textarea id="hamperCardMessage" rows="3" placeholder="Write your heartfelt message to be hand-calligraphed..." style="width:100%; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--color-border); outline:none; background:var(--color-soft-cream);"></textarea>
               </div>
             </div>
@@ -204,7 +324,7 @@
             <div class="live-preview-sidebar">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
                 <h4 style="font-family:var(--font-serif); font-size:1.4rem; color:var(--color-dark-olive);">
-                  <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-champagne);"></i> Live Preview
+                  <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--color-champagne);"></i> YOUR HAMPER PREVIEW
                 </h4>
                 <span class="font-script gold-gradient-text" style="font-size:1.3rem;">Bespoke Craft</span>
               </div>
@@ -221,12 +341,12 @@
                   <i class="fa-solid fa-list-check" style="color:var(--color-champagne);"></i> CONTENTS IN YOUR HAMPER:
                 </div>
                 <ul id="previewItemList" class="preview-item-list">
-                  <!-- Dynamic items list -->
+                  <li><span>🪵 Handcrafted Wooden Basket</span> <span>₹599</span></li>
                 </ul>
               </div>
 
               <div style="display:flex; align-items:center; justify-content:space-between; font-family:var(--font-serif); font-size:1.4rem; font-weight:700; color:var(--color-dark-olive); margin-bottom:20px; padding-top:10px; border-top:1px solid var(--color-border);">
-                <span>Total Cost:</span>
+                <span>Total Amount:</span>
                 <span id="previewTotalEl" style="color:var(--color-champagne);">₹599</span>
               </div>
 
