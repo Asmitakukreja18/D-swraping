@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (wishlist.length === 0) return;
       const itemsList = wishlist.map(i => i.name).join(', ');
       const message = `Hi D's Wrapping Studio! I am interested in these items from my wishlist: ${itemsList}. Please let me know the pricing and options.`;
-      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
     });
   }
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchResults.innerHTML = '<p style="color:var(--color-text-muted);">No products found matching your search.</p>';
       } else {
         searchResults.innerHTML = matches.map(p => `
-          <div class="search-result-item" onclick="window.open('https://wa.me/919876543210?text=Hi%20D\\'s%20Studio!%20I%20am%20enquiring%20about%20${encodeURIComponent(p.name)}', '_blank')">
+          <div class="search-result-item" onclick="window.open('https://api.whatsapp.com/send?text=Hi%20D\\'s%20Studio!%20I%20am%20enquiring%20about%20${encodeURIComponent(p.name)}', '_blank')">
             <img src="${p.img}" alt="${p.name}">
             <div>
               <h5 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--color-primary);">${p.name}</h5>
@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendCustomWhatsAppBtn.addEventListener('click', () => {
       const note = document.getElementById('builderNote').value.trim();
       const msg = `Hi D's Wrapping Studio! I would like to order a Custom Hamper with these specifications:\n- Occasion: ${customHamperState.occasion}\n- Vibe: ${customHamperState.vibe}\n- Items: ${customHamperState.items.join(', ')}${note ? `\n- Special Note: ${note}` : ''}`;
-      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
       triggerSparkles();
     });
   }
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
       qvCategory.textContent = category;
       qvTitle.textContent = title;
       qvDesc.textContent = desc;
-      qvWaBtn.href = `https://wa.me/919876543210?text=Hi%20D's%20Wrapping%20Studio!%20I'm%20interested%20in%20'${encodeURIComponent(title)}'.`;
+      qvWaBtn.href = `https://api.whatsapp.com/send?text=Hi%20D's%20Wrapping%20Studio!%20I'm%20interested%20in%20'${encodeURIComponent(title)}'.`;
 
       quickViewModal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const waMsg = `Hi D's Wrapping Studio!\nMy name is ${name} (${phone}).\nI would like to enquire about:\n- Occasion: ${occasion}\n- Budget: ${budget}\n- Type: ${category}\n${message ? `- Message: ${message}` : ''}`;
       
       alert(`Thank you ${name}! Opening WhatsApp to complete your enquiry with D's Wrapping Studio.`);
-      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(waMsg)}`, '_blank');
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(waMsg)}`, '_blank');
       enquiryForm.reset();
     });
   }
@@ -1038,7 +1038,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div>
                   <label style="font-size:0.8rem; font-weight:700; color:var(--color-dark-olive);">WhatsApp Phone *</label>
-                  <input required type="tel" placeholder="+91 9876543210" style="width:100%; padding:10px; border-radius:var(--radius-sm); border:1px solid var(--color-border);">
+                  <input required type="tel" placeholder="Enter Phone Number" style="width:100%; padding:10px; border-radius:var(--radius-sm); border:1px solid var(--color-border);">
                 </div>
               </div>
 
@@ -1152,7 +1152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.placeOrderDemo = async function() {
     const totalAmountINR = cart.reduce((sum, item) => sum + (item.priceINR * item.qty), 0);
     const customerName = document.querySelector('#shippingAddressForm input[type="text"]')?.value || 'Valued Customer';
-    const customerPhone = document.querySelector('#shippingAddressForm input[type="tel"]')?.value || '+91 9876543210';
+    const customerPhone = document.querySelector('#shippingAddressForm input[type="tel"]')?.value || '';
     const streetAddress = document.querySelectorAll('#shippingAddressForm input[type="text"]')[1]?.value || 'Main Street';
     const city = document.querySelectorAll('#shippingAddressForm input[type="text"]')[2]?.value || 'Mumbai';
     const state = document.querySelector('#shippingAddressForm select')?.value || 'Maharashtra';

@@ -93,7 +93,7 @@ db.serialize(() => {
       db.run('INSERT INTO users (full_name, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?)', [
         'D Studio Admin',
         'admin@dswrapping.com',
-        '+91 9876543210',
+        '',
         hash,
         'admin'
       ]);

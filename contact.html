@@ -47,7 +47,7 @@
         <a href="custom-hampers.html" class="btn btn-sm btn-gold">
           <i class="fa-solid fa-wand-magic-sparkles"></i> Build Hamper
         </a>
-        <a href="https://wa.me/919876543210?text=Hi%20D's%20Wrapping%20Studio!%20I'd%20like%20to%20enquire%20about%20gifting." target="_blank" rel="noopener" class="btn btn-sm btn-primary-olive">
+        <a href="https://api.whatsapp.com/send?text=Hi%20D's%20Wrapping%20Studio!%20I'd%20like%20to%20enquire%20about%20gifting." target="_blank" rel="noopener" class="btn btn-sm btn-primary-olive">
           <i class="fa-brands fa-whatsapp"></i> Enquire
         </a>
       </div>
@@ -79,10 +79,9 @@
               <span class="font-script" style="fontSize:1.6rem;">“You name it, we craft it.”</span>
             </p>
 
-            <div style="display:flex; flex-direction:column; gap:20px; marginBottom:30px;">
-              <div>
-                <strong style="color:var(--color-dark-olive);"><i class="fa-brands fa-whatsapp gold-accent"></i> WhatsApp / Calls:</strong>
-                <p style="color:var(--color-muted-text);">+91 98765 43210</p>
+            <div style="display:flex; flex-direction:column; gap:20p              <div>
+                <strong style="color:var(--color-dark-olive);"><i class="fa-brands fa-whatsapp gold-accent"></i> WhatsApp / Instant Chat:</strong>
+                <p style="color:var(--color-muted-text);"><a href="https://api.whatsapp.com/send?text=Hi%20D's%20Wrapping%20Studio!" target="_blank" rel="noopener">Connect via WhatsApp</a></p>
               </div>
               <div>
                 <strong style="color:var(--color-dark-olive);"><i class="fa-brands fa-instagram gold-accent"></i> Instagram:</strong>
@@ -111,7 +110,7 @@
 
               <div style="marginBottom:16px;">
                 <label style="display:block; fontSize:0.82rem; fontWeight:700; color:var(--color-dark-olive); marginBottom:6px;">Phone Number *</label>
-                <input required type="tel" id="contactPhone" placeholder="+91 9876543210" style="width:100%; padding:12px; borderRadius:var(--radius-sm); border:1px solid var(--color-border); outline:none;">
+                <input required type="tel" id="contactPhone" placeholder="Your Phone Number" style="width:100%; padding:12px; borderRadius:var(--radius-sm); border:1px solid var(--color-border); outline:none;">
               </div>
 
               <div style="marginBottom:20px;">
@@ -124,7 +123,6 @@
               </button>
             </form>
           </div>
-
         </div>
       </div>
     </section>
@@ -143,7 +141,9 @@
       var phone = document.getElementById('contactPhone').value;
       var msg = document.getElementById('contactMsg').value;
       var wa = "Hi D's Wrapping Studio! Enquiry from " + name + " (" + phone + "):\n" + msg;
-      window.open("https://wa.me/919876543210?text=" + encodeURIComponent(wa), "_blank");
+      window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(wa), "_blank");
+    });
+  </script>wa), "_blank");
     });
   </script>
   <script src="script.js"></script>
